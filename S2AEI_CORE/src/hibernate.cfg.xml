@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+<!-- 		Configuration MySQL and Hibernate --> 
+<!-- 		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property> -->
+<!-- 		<property name="connection.datasource">java:/comp/env/jdbc/dbDevInt</property> -->
+<!-- 		<property name="current_session_context_class">thread</property> -->
+		
+<!-- 		<mapping class="devInt.s2aei.admin.Admin"/> -->
+<!-- 		<mapping class="devInt.s2aei.student.Student"/> -->
+<!-- 		<mapping class="devInt.s2aei.teacher.Teacher"/> -->
+<!-- 		<mapping class="devInt.s2aei.inspector.Inspector"/> -->
+		
+		<!-- Configuration MySQL and Hibernate -->
+		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/db_dev_int</property>
+		<property name="current_session_context_class">thread</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">1q2w3e</property>
+		<property name="c3po.min_size">5</property>
+		<property name="c3po.max_size">20</property>
+		<property name="c3po.timeout">300</property>
+		<property name="c3po.max_statements">50</property>
+		<property name="c3po-idle_test_period">3000</property>
+		
+		
+		<mapping class="devInt.s2aei.admin.Admin"/>
+		<mapping class="devInt.s2aei.student.Student"/>
+		<mapping class="devInt.s2aei.teacher.Teacher"/>
+		<mapping class="devInt.s2aei.inspector.Inspector"/>
+		
+	</session-factory>
+</hibernate-configuration>
