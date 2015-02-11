@@ -7,4 +7,7 @@ public interface StudentDAO {
 	public void update(Student student);
 	public void delete(Student student);
 	public List<Student> listAll();
+	
+	// new changes v2
+	public List<Student> listById(Integer idStudent);
 }

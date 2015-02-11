@@ -5,29 +5,35 @@ import java.util.List;
 import devInt.s2aei.util.DAOFactory;
 
 public class StudentBR {
-	
+
 	private StudentDAO studentDAO;
-	
-	public StudentBR(){
+
+	public StudentBR() {
 		this.studentDAO = DAOFactory.createStudentDAO();
 	}
 
-	public void save(Student student){
+	public void save(Student student) {
 		Integer idStudent = student.getIdStudent();
-		
-		if(idStudent == null || idStudent == 0){
+
+		if (idStudent == null || idStudent == 0) {
 			this.studentDAO.save(student);
-		}else{
+		} else {
 			this.studentDAO.update(student);
 		}
 	}
 
-	public void delete(Student student){
+	public void delete(Student student) {
 		this.studentDAO.delete(student);
 	}
 
-	public List<Student> listAll(){
+	public List<Student> listAll() {
 		return this.studentDAO.listAll();
+	}
+
+	// new changes v2
+	public List<Student> listById(Integer idStudent) {
+		return this.studentDAO.listById(idStudent);
+
 	}
 
 }

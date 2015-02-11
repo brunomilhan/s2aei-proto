@@ -41,7 +41,7 @@ public class Student implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "project")
 	@Column(name = "project_leader")
-	private String projectLeader; // fk
+	private String projectLeader; // project fk
 	private String permissions;
 
 	public int getIdStudent() {
