@@ -7,36 +7,42 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-@Entity(name="student")
-public class Student implements Serializable{
+@Entity(name = "student")
+public class Student implements Serializable {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5342336028706686915L;
-	
-	@Column(name="id_student")
+	private static final long serialVersionUID = 2599616221722183408L;
+	@Column(name = "idstudent")
 	@Id
 	@GeneratedValue
 	private int idStudent;
 	private String email;
 	private String name;
 	private String password;
-	
-	@Column(name="cad_date")
+
+	@Column(name = "cad_date")
 	private Date cadDate;
-	
-	@Column(name="last_mod_date")
+
+	@Column(name = "last_mod")
 	private Date lastModDate;
 	private String status;
-	private String function;
-	private String period;
-	
-	@Column(name="project_involved")
-	private String projectInvolved;
-	
-	@Column(name="project_leader")
-	private String projectLeader;
+
+	// new changes v2
+	@Column(name = "student_number")
+	private String studentNumber;
+	private String course;
+	private int period;
+
+	@ManyToOne
+	@JoinColumn(name = "project")
+	@Column(name = "project_leader")
+	private String projectLeader; // fk
+	private String permissions;
 
 	public int getIdStudent() {
 		return idStudent;
@@ -94,28 +100,28 @@ public class Student implements Serializable{
 		this.status = status;
 	}
 
-	public String getFunction() {
-		return function;
+	public String getStudentNumber() {
+		return studentNumber;
 	}
 
-	public void setFunction(String function) {
-		this.function = function;
+	public void setStudentNumber(String studentNumber) {
+		this.studentNumber = studentNumber;
 	}
 
-	public String getPeriod() {
+	public String getCourse() {
+		return course;
+	}
+
+	public void setCourse(String course) {
+		this.course = course;
+	}
+
+	public int getPeriod() {
 		return period;
 	}
 
-	public void setPeriod(String period) {
+	public void setPeriod(int period) {
 		this.period = period;
-	}
-
-	public String getProjectInvolved() {
-		return projectInvolved;
-	}
-
-	public void setProjectInvolved(String projectInvolved) {
-		this.projectInvolved = projectInvolved;
 	}
 
 	public String getProjectLeader() {
@@ -126,26 +132,35 @@ public class Student implements Serializable{
 		this.projectLeader = projectLeader;
 	}
 
+	public String getPermissions() {
+		return permissions;
+	}
+
+	public void setPermissions(String permissions) {
+		this.permissions = permissions;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cadDate == null) ? 0 : cadDate.hashCode());
+		result = prime * result + ((course == null) ? 0 : course.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result
-				+ ((function == null) ? 0 : function.hashCode());
 		result = prime * result + idStudent;
 		result = prime * result
 				+ ((lastModDate == null) ? 0 : lastModDate.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result
 				+ ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((period == null) ? 0 : period.hashCode());
+		result = prime * result + period;
 		result = prime * result
-				+ ((projectInvolved == null) ? 0 : projectInvolved.hashCode());
+				+ ((permissions == null) ? 0 : permissions.hashCode());
 		result = prime * result
 				+ ((projectLeader == null) ? 0 : projectLeader.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result
+				+ ((studentNumber == null) ? 0 : studentNumber.hashCode());
 		return result;
 	}
 
@@ -163,15 +178,15 @@ public class Student implements Serializable{
 				return false;
 		} else if (!cadDate.equals(other.cadDate))
 			return false;
+		if (course == null) {
+			if (other.course != null)
+				return false;
+		} else if (!course.equals(other.course))
+			return false;
 		if (email == null) {
 			if (other.email != null)
 				return false;
 		} else if (!email.equals(other.email))
-			return false;
-		if (function == null) {
-			if (other.function != null)
-				return false;
-		} else if (!function.equals(other.function))
 			return false;
 		if (idStudent != other.idStudent)
 			return false;
@@ -190,15 +205,12 @@ public class Student implements Serializable{
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (period == null) {
-			if (other.period != null)
-				return false;
-		} else if (!period.equals(other.period))
+		if (period != other.period)
 			return false;
-		if (projectInvolved == null) {
-			if (other.projectInvolved != null)
+		if (permissions == null) {
+			if (other.permissions != null)
 				return false;
-		} else if (!projectInvolved.equals(other.projectInvolved))
+		} else if (!permissions.equals(other.permissions))
 			return false;
 		if (projectLeader == null) {
 			if (other.projectLeader != null)
@@ -210,8 +222,12 @@ public class Student implements Serializable{
 				return false;
 		} else if (!status.equals(other.status))
 			return false;
+		if (studentNumber == null) {
+			if (other.studentNumber != null)
+				return false;
+		} else if (!studentNumber.equals(other.studentNumber))
+			return false;
 		return true;
 	}
-
 
 }
