@@ -2,6 +2,8 @@ package devInt.s2aei.util;
 
 import devInt.s2aei.admin.AdminDAO;
 import devInt.s2aei.admin.AdminDAOHibernate;
+import devInt.s2aei.project.ProjectDAO;
+import devInt.s2aei.project.ProjectDAOHibernate;
 import devInt.s2aei.reviewer.ReviewerDAO;
 import devInt.s2aei.reviewer.ReviewerDAOHibernate;
 import devInt.s2aei.student.StudentDAO;
@@ -37,10 +39,17 @@ public class DAOFactory {
 	}
 	
 	public static ReviewerDAO createInspectorDAO(){
-		ReviewerDAOHibernate inspectorDAO = new ReviewerDAOHibernate();
-		inspectorDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+		ReviewerDAOHibernate reviewerDAO = new ReviewerDAOHibernate();
+		reviewerDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
 		
-		return inspectorDAO;
+		return reviewerDAO;
+	}
+	
+	public static ProjectDAO createProjectDAO(){
+		ProjectDAOHibernate projectDAO = new ProjectDAOHibernate();
+		projectDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+		
+		return projectDAO;
 	}
 
 }
