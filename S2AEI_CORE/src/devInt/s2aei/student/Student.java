@@ -10,13 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import devInt.s2aei.project.Project;
+
 @Entity(name = "student")
 public class Student implements Serializable {
-
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2599616221722183408L;
+	private static final long serialVersionUID = -6689319214209921794L;
 	@Column(name = "idstudent")
 	@Id
 	@GeneratedValue
@@ -41,7 +42,7 @@ public class Student implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "project")
 	@Column(name = "project_leader")
-	private String projectLeader; // project fk
+	private Project projectLeader; // project fk
 	private String permissions;
 
 	public int getIdStudent() {
@@ -124,11 +125,11 @@ public class Student implements Serializable {
 		this.period = period;
 	}
 
-	public String getProjectLeader() {
+	public Project getProjectLeader() {
 		return projectLeader;
 	}
 
-	public void setProjectLeader(String projectLeader) {
+	public void setProjectLeader(Project projectLeader) {
 		this.projectLeader = projectLeader;
 	}
 
