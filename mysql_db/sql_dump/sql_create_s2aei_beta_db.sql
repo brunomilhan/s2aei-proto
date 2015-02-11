@@ -28,7 +28,6 @@ CREATE TABLE IF NOT EXISTS `s2aei_beta_db`.`student` (
   `student_number` INT NOT NULL,
   `course` VARCHAR(45) NULL,
   `period` INT NULL,
-  `projects` INT NULL,
   `project_leader` INT NULL,
   PRIMARY KEY (`idstudent`),
   UNIQUE INDEX `idstudent_UNIQUE` (`idstudent` ASC),
