@@ -40,8 +40,7 @@ public class Student implements Serializable {
 	private int period;
 
 	@ManyToOne
-	@JoinColumn(name = "project")
-	@Column(name = "project_leader")
+	@JoinColumn(name = "project_leader")
 	private Project projectLeader; // project fk
 	private String permissions;
 

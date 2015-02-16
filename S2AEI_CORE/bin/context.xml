@@ -9,5 +9,5 @@
 		username="root"
 		password="1q2w3e"
 		driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/db_dev_int?autoReconnect=true"/>
+		url="jdbc:mysql://localhost:3306/s2aei_beta_db?autoReconnect=true"/>
 </Context>

@@ -8,17 +8,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity(name="inspector")
+@Entity(name="reviewer")
 public class Reviewer implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3833548576592560930L;
 	
-	@Column(name="id_inspector")
+	@Column(name="idreviewer")
 	@Id
 	@GeneratedValue
-	private int idInspector;
+	private int idReviewer;
 	private String email;
 	private String name;
 	private String password;
@@ -26,7 +26,7 @@ public class Reviewer implements Serializable {
 	@Column(name="cad_date")
 	private Date cadDate;
 	
-	@Column(name="last_mod_date")
+	@Column(name="last_mod")
 	private Date lastModDate;
 	private String status;
 	private String function;
@@ -40,11 +40,11 @@ public class Reviewer implements Serializable {
 	private String projectEvaluated;
 
 	public int getIdInspector() {
-		return idInspector;
+		return idReviewer;
 	}
 
 	public void setIdInspector(int idInspector) {
-		this.idInspector = idInspector;
+		this.idReviewer = idInspector;
 	}
 
 	public String getEmail() {
@@ -145,7 +145,7 @@ public class Reviewer implements Serializable {
 		result = prime * result + ((field == null) ? 0 : field.hashCode());
 		result = prime * result
 				+ ((function == null) ? 0 : function.hashCode());
-		result = prime * result + idInspector;
+		result = prime * result + idReviewer;
 		result = prime * result
 				+ ((lastModDate == null) ? 0 : lastModDate.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -194,7 +194,7 @@ public class Reviewer implements Serializable {
 				return false;
 		} else if (!function.equals(other.function))
 			return false;
-		if (idInspector != other.idInspector)
+		if (idReviewer != other.idReviewer)
 			return false;
 		if (lastModDate == null) {
 			if (other.lastModDate != null)

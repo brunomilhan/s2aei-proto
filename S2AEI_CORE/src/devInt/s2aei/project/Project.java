@@ -12,10 +12,9 @@ import javax.persistence.ManyToOne;
 
 import devInt.s2aei.knowledge.KnowledgeArea;
 import devInt.s2aei.student.Student;
-import devInt.s2aei.studentProject.StudentProject;
 import devInt.s2aei.teacher.Teacher;
 
-@Entity
+@Entity(name = "project")
 public class Project implements Serializable {
 
 	/**
@@ -40,116 +39,84 @@ public class Project implements Serializable {
 	private Date lastModDate;
 	private String status;
 
-	@ManyToOne
-	@JoinColumn(name = "student_member")
-	private StudentProject studentMembers; // student_project fk
-
-	@ManyToOne
-	@JoinColumn(name = "knowledge_area")
+	// @ManyToOne
+	// @JoinColumn(name = "knowledge_area")
+	@Column(name = "knowledge_area")
 	private KnowledgeArea knowledgeArea;
 
-	@ManyToOne
-	@JoinColumn(name = "teacher_ad")
+	// @ManyToOne
+	// @JoinColumn(name = "teacher_ad")
 	private Teacher teacherAdvisor;
+
+	@Column(name = "text_xml")
 	private String textXml; // think about this, maybe keep route for txt
 	private String answers; // think about this
-
 	public int getIdProject() {
 		return idProject;
 	}
-
 	public void setIdProject(int idProject) {
 		this.idProject = idProject;
 	}
-
 	public String getTitle() {
 		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 	public Student getLeader() {
 		return leader;
 	}
-
 	public void setLeader(Student leader) {
 		this.leader = leader;
 	}
-
 	public Date getCreationDate() {
 		return creationDate;
 	}
-
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
-
 	public Date getLastModDate() {
 		return lastModDate;
 	}
-
 	public void setLastModDate(Date lastModDate) {
 		this.lastModDate = lastModDate;
 	}
-
 	public String getStatus() {
 		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-	public StudentProject getStudentMembers() {
-		return studentMembers;
-	}
-
-	public void setStudentMembers(StudentProject studentMembers) {
-		this.studentMembers = studentMembers;
-	}
-
 	public KnowledgeArea getKnowledgeArea() {
 		return knowledgeArea;
 	}
-
 	public void setKnowledgeArea(KnowledgeArea knowledgeArea) {
 		this.knowledgeArea = knowledgeArea;
 	}
-
 	public Teacher getTeacherAdvisor() {
 		return teacherAdvisor;
 	}
-
 	public void setTeacherAdvisor(Teacher teacherAdvisor) {
 		this.teacherAdvisor = teacherAdvisor;
 	}
-
 	public String getTextXml() {
 		return textXml;
 	}
-
 	public void setTextXml(String textXml) {
 		this.textXml = textXml;
 	}
-
 	public String getAnswers() {
 		return answers;
 	}
-
 	public void setAnswers(String answers) {
 		this.answers = answers;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -167,14 +134,11 @@ public class Project implements Serializable {
 		result = prime * result + ((leader == null) ? 0 : leader.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result
-				+ ((studentMembers == null) ? 0 : studentMembers.hashCode());
-		result = prime * result
 				+ ((teacherAdvisor == null) ? 0 : teacherAdvisor.hashCode());
 		result = prime * result + ((textXml == null) ? 0 : textXml.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -221,11 +185,6 @@ public class Project implements Serializable {
 				return false;
 		} else if (!status.equals(other.status))
 			return false;
-		if (studentMembers == null) {
-			if (other.studentMembers != null)
-				return false;
-		} else if (!studentMembers.equals(other.studentMembers))
-			return false;
 		if (teacherAdvisor == null) {
 			if (other.teacherAdvisor != null)
 				return false;
@@ -243,5 +202,7 @@ public class Project implements Serializable {
 			return false;
 		return true;
 	}
-
+	
+	
+	
 }
