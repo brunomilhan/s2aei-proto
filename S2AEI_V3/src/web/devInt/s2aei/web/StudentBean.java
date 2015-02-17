@@ -19,13 +19,13 @@ import devInt.s2aei.student.StudentBR;
 public class StudentBean {
 	
 	private Student student = new Student();
-	private StudentBR inspectorBR = new StudentBR();
+	private StudentBR studentBR = new StudentBR();
 	private List<Student> listAll;
 	
 	@PostConstruct
 	public void construct() {
 
-		listAll = this.inspectorBR.listAll();
+		listAll = this.studentBR.listAll();
 	}
 
 	public List<Student> listAll() {
@@ -35,20 +35,20 @@ public class StudentBean {
 		
 	public void delete(){
 		try{			
-			inspectorBR.delete(student);
+			studentBR.delete(student);
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Excluido com sucesso!"));
 			this.student = new Student();
 		}catch(HibernateException e){
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR,"Não foi possível deletar.",""));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR,"N�o foi posssivel deletar.",""));
 			this.student = new Student();
 		}
 	}
 
 	public void save(){
 		try{
-			inspectorBR.save(student);
+			studentBR.save(student);
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Cadastrado com sucesso!"));
 			this.student = new Student();

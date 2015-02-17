@@ -36,56 +36,56 @@
 					<p:outputLabel></p:outputLabel>
 					<p:commandButton action="#{studentBean.save}"   value="Salvar"
 					process="@form"
-					update=":listagem :cadastro" />
+					update=":cadastro" />
 
 				</h:panelGrid>
 			</p:panel>
 		</h:form>
 		
-		<h:form id="listagem">
-			<p:dataTable var="contact" id="list" value="#{studentBean.listAll()}"
-				paginator="true" style="height:500px; width:1000px" rows="10"
-				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} ">
-				<f:facet name="header">Contatos Cadastrados</f:facet>
+<!-- 		<h:form id="listagem"> -->
+<!-- 			<p:dataTable var="contact" id="list" value="#{studentBean.listAll()}" -->
+<!-- 				paginator="true" style="height:500px; width:1000px" rows="10" -->
+<!-- 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "> -->
+<!-- 				<f:facet name="header">Contatos Cadastrados</f:facet> -->
 
-				<p:column headerText="Nome" filterBy="name">
-					<h:outputText value="#{contact.name}" />
-				</p:column>
+<!-- 				<p:column headerText="Nome" filterBy="name"> -->
+<!-- 					<h:outputText value="#{contact.name}" /> -->
+<!-- 				</p:column> -->
 				
-				<p:column headerText="Endereço">
-					<h:outputText value="#{contact.address}" />
-				</p:column>				
+<!-- 				<p:column headerText="Endereço"> -->
+<!-- 					<h:outputText value="#{contact.address}" /> -->
+<!-- 				</p:column>				 -->
 
-				<p:column headerText="Telefone">
-					<h:outputText value="#{contact.phone}" />
-				</p:column>
+<!-- 				<p:column headerText="Telefone"> -->
+<!-- 					<h:outputText value="#{contact.phone}" /> -->
+<!-- 				</p:column> -->
 				
-				<p:column headerText="Celular">
-					<h:outputText value="#{contact.cell_phone}" />
-				</p:column>
+<!-- 				<p:column headerText="Celular"> -->
+<!-- 					<h:outputText value="#{contact.cell_phone}" /> -->
+<!-- 				</p:column> -->
 				
-				<p:column headerText="Email">
-					<h:outputText value="#{contact.email}" />
-				</p:column>
+<!-- 				<p:column headerText="Email"> -->
+<!-- 					<h:outputText value="#{contact.email}" /> -->
+<!-- 				</p:column> -->
 				
-				<p:column headerText="Opções">
-					<p:commandButton id="set" icon="ui-icon-trash"
-						action="#{contactBean.delete}" process="@this" update=":listagem :cadastro"
-						ajax="false" title="Excluir"
-						onclick="if(!confirm('Confirmar a exclusão do contato?')) return false;">
-						<f:setPropertyActionListener target="#{contactBean.contact}"
-							value="#{contact}" />
-					</p:commandButton>
-					<p:spacer width="10" />
-					<p:commandButton id="update" icon="ui-icon-pencil"
-						update=":cadastro" process="@this" title="Alterar">
-						<f:setPropertyActionListener target="#{contactBean.contact}"
-							value="#{contact}" />
-					</p:commandButton>
-				</p:column>
-			</p:dataTable>
+<!-- 				<p:column headerText="Opções"> -->
+<!-- 					<p:commandButton id="set" icon="ui-icon-trash" -->
+<!-- 						action="#{contactBean.delete}" process="@this" update=":listagem :cadastro" -->
+<!-- 						ajax="false" title="Excluir" -->
+<!-- 						onclick="if(!confirm('Confirmar a exclusão do contato?')) return false;"> -->
+<!-- 						<f:setPropertyActionListener target="#{contactBean.contact}" -->
+<!-- 							value="#{contact}" /> -->
+<!-- 					</p:commandButton> -->
+<!-- 					<p:spacer width="10" /> -->
+<!-- 					<p:commandButton id="update" icon="ui-icon-pencil" -->
+<!-- 						update=":cadastro" process="@this" title="Alterar"> -->
+<!-- 						<f:setPropertyActionListener target="#{contactBean.contact}" -->
+<!-- 							value="#{contact}" /> -->
+<!-- 					</p:commandButton> -->
+<!-- 				</p:column> -->
+<!-- 			</p:dataTable> -->
 
-		</h:form>
+<!-- 		</h:form> -->
 
 	</ui:define>
 </ui:composition>
