@@ -39,13 +39,12 @@ public class Project implements Serializable {
 	private Date lastModDate;
 	private String status;
 
-	// @ManyToOne
-	// @JoinColumn(name = "knowledge_area")
-	@Column(name = "knowledge_area")
+	@ManyToOne
+	@JoinColumn(name = "knowledge_area")
 	private KnowledgeArea knowledgeArea;
 
-	// @ManyToOne
-	// @JoinColumn(name = "teacher_ad")
+	@ManyToOne
+	@JoinColumn(name = "teacher_ad")
 	private Teacher teacherAdvisor;
 
 	@Column(name = "text_xml")

@@ -28,7 +28,7 @@
 		
 		
 		<mapping class="devInt.s2aei.admin.Admin"/>
-<!-- 		<mapping class="devInt.s2aei.project.Project"/> -->
+		<mapping class="devInt.s2aei.project.Project"/>
 		<mapping class="devInt.s2aei.student.Student"/>
 		<mapping class="devInt.s2aei.teacher.Teacher"/>
 		<mapping class="devInt.s2aei.reviewer.Reviewer"/>

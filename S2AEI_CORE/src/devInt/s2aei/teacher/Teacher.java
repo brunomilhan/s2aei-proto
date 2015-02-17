@@ -17,7 +17,7 @@ public class Teacher implements Serializable{
 	
 	@Id
 	@GeneratedValue
-	@Column(name="id_teacher")
+	@Column(name="idteacher")
 	private int idTeacher;
 	private String email;
 	private String name;
@@ -26,12 +26,12 @@ public class Teacher implements Serializable{
 	@Column(name="cad_date")
 	private Date cadDate;
 	
-	@Column(name="last_mod_date")
+	@Column(name="last_mod")
 	private Date lastModDate;
 	private String status;
-	private String function;
+	private String permissions;
 	
-	@Column(name="main_discipline")
+	@Column(name="main_disc")
 	private String mainDiscipline;
 	
 	@Column(name="project_guides")
@@ -93,12 +93,12 @@ public class Teacher implements Serializable{
 		this.status = status;
 	}
 
-	public String getFunction() {
-		return function;
+	public String getPermissions() {
+		return permissions;
 	}
 
-	public void setFunction(String function) {
-		this.function = function;
+	public void setPermissions(String permissions) {
+		this.permissions = permissions;
 	}
 
 	public String getMainDiscipline() {
@@ -124,7 +124,7 @@ public class Teacher implements Serializable{
 		result = prime * result + ((cadDate == null) ? 0 : cadDate.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result
-				+ ((function == null) ? 0 : function.hashCode());
+				+ ((permissions == null) ? 0 : permissions.hashCode());
 		result = prime * result + idTeacher;
 		result = prime * result
 				+ ((lastModDate == null) ? 0 : lastModDate.hashCode());
@@ -158,10 +158,10 @@ public class Teacher implements Serializable{
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (function == null) {
-			if (other.function != null)
+		if (permissions == null) {
+			if (other.permissions != null)
 				return false;
-		} else if (!function.equals(other.function))
+		} else if (!permissions.equals(other.permissions))
 			return false;
 		if (idTeacher != other.idTeacher)
 			return false;

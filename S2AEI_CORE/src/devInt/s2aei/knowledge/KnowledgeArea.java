@@ -15,9 +15,10 @@ public class KnowledgeArea implements Serializable {
 	 */
 	private static final long serialVersionUID = 7337796658167030666L;
 	
-	@Column(name = "idknowldge_area")
+	
 	@Id
-	@GeneratedValue	
+	@GeneratedValue
+	@Column(name = "idknowledge_area")
 	private int idKnowledgeArea;
 	private String description;
 
