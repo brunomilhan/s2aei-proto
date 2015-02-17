@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/templates/interna.xhtml">
+	<ui:define name="corpo">
+		<h:form id="cadastro">
+			<h:inputHidden value="#{studentBean.student.idStudent}" />
+			<p:panel header="Cadastro de Estudantes" styleClass="well">				
+				<p:messages id="msg" />
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Nome:" for="name" />
+					<p:inputText id="name" label="Nome Contato"
+						value="#{studentBean.student.name}" size="40"
+						maxlength="40" required="true"
+						requiredMessage="Erro, nome não pode ser nulo.">
+					</p:inputText>
+						
+					<h:outputLabel value="Email:" for="email" />
+					<p:inputText id="email" label="email"
+						value="#{studentBean.student.email}" size="40"
+						maxlength="40" />
+						
+					<h:outputLabel value="Senha:" for="pass" />
+					<p:inputText id="pass" label="pass"
+						value="#{studentBean.student.password}" size="40"
+						maxlength="40" />
+						
+										
+					<p:outputLabel></p:outputLabel>
+					<p:commandButton action="#{studentBean.save}"   value="Salvar"
+					process="@form"
+					update=":listagem :cadastro" />
+
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+		
+		<h:form id="listagem">
+			<p:dataTable var="contact" id="list" value="#{studentBean.listAll()}"
+				paginator="true" style="height:500px; width:1000px" rows="10"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} ">
+				<f:facet name="header">Contatos Cadastrados</f:facet>
+
+				<p:column headerText="Nome" filterBy="name">
+					<h:outputText value="#{contact.name}" />
+				</p:column>
+				
+				<p:column headerText="Endereço">
+					<h:outputText value="#{contact.address}" />
+				</p:column>				
+
+				<p:column headerText="Telefone">
+					<h:outputText value="#{contact.phone}" />
+				</p:column>
+				
+				<p:column headerText="Celular">
+					<h:outputText value="#{contact.cell_phone}" />
+				</p:column>
+				
+				<p:column headerText="Email">
+					<h:outputText value="#{contact.email}" />
+				</p:column>
+				
+				<p:column headerText="Opções">
+					<p:commandButton id="set" icon="ui-icon-trash"
+						action="#{contactBean.delete}" process="@this" update=":listagem :cadastro"
+						ajax="false" title="Excluir"
+						onclick="if(!confirm('Confirmar a exclusão do contato?')) return false;">
+						<f:setPropertyActionListener target="#{contactBean.contact}"
+							value="#{contact}" />
+					</p:commandButton>
+					<p:spacer width="10" />
+					<p:commandButton id="update" icon="ui-icon-pencil"
+						update=":cadastro" process="@this" title="Alterar">
+						<f:setPropertyActionListener target="#{contactBean.contact}"
+							value="#{contact}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

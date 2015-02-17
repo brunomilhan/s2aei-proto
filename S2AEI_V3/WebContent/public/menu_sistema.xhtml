@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+
+	<p:menubar style="height:30px;">
+
+		<p:menuitem value="Inicio" icon="ui-icon-home"
+			url="http://localhost:8090/s2aei_v2/public/home.jsf" />
+		<p:submenu label="Cadastros/Consultas" icon="ui-icon-contact">
+			<p:menuitem value="Alunos" icon="ui-icon-contact"
+				url="http://localhost:8090/s2aei_v2/public/student.jsf" />
+		</p:submenu>
+	</p:menubar>
+</ui:composition>
+</html>

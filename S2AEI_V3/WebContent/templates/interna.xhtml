@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title><ui:insert name="titulo">Agenda de Contatos Online</ui:insert></title>
+	<h:outputStylesheet name="style.css" library="css" />
+	<style type="text/css">
+<!--
+#logotipo {
+	text-align: center;
+	
+}
+-->
+</style>
+
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+    <h:outputStylesheet library="css" name="bootstrap-responsive.min.css" />
+    
+</h:head>
+
+<h:body>
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	<h:outputScript library="js" name="bootstrap.js" />
+	
+	<div id="container">
+		<div id="logotipo">
+			<h:graphicImage library="imagens" name="banner.png"></h:graphicImage>
+		</div>
+
+		<div id="barra_menu">
+			<ui:insert name="barra_menu">
+				<ui:include src="/public/menu_sistema.xhtml" />
+			</ui:insert>
+		</div>
+
+		<div id="corpo">
+			<ui:insert name="corpo" />
+		</div>
+
+		<div id="rodape">
+			<ui:insert name="rodape">
+				<ui:include src="/public/rodape.xhtml" />
+			</ui:insert>
+		</div>
+
+	</div>
+</h:body>
+</html>
