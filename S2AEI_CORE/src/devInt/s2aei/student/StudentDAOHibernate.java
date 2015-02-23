@@ -11,7 +11,8 @@ public class StudentDAOHibernate implements StudentDAO {
 
 	@Override
 	public void save(Student student) {
-		this.session.save(student);
+		this.session.flush();
+		this.session.saveOrUpdate(student);
 
 	}
 

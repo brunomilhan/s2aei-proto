@@ -1,5 +1,6 @@
 package devInt.s2aei.student;
 
+import java.util.Date;
 import java.util.List;
 
 import devInt.s2aei.util.DAOFactory;
@@ -14,9 +15,16 @@ public class StudentBR {
 
 	public void save(Student student) {
 		Integer idStudent = student.getIdStudent();
+		Date dateNow = new Date(System.currentTimeMillis());
+		student.setLastModDate(dateNow);
 
+		
 		if (idStudent == null || idStudent == 0) {
-			this.studentDAO.save(student);
+			student.setCadDate(dateNow);
+			student.setPermissions("student");
+			student.setStatus("active");
+			
+			this.studentDAO.save(student);			
 		} else {
 			this.studentDAO.update(student);
 		}

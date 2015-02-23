@@ -6,21 +6,17 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import devInt.s2aei.project.Project;
 
 @Entity(name = "student")
 public class Student implements Serializable {
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6689319214209921794L;
-	@Column(name = "idstudent")
-	@Id
-	@GeneratedValue
+	private static final long serialVersionUID = 6361608726447821955L;
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name="idstudent")
 	private int idStudent;
 	private String email;
 	private String name;
@@ -35,111 +31,76 @@ public class Student implements Serializable {
 
 	// new changes v2
 	@Column(name = "student_number")
-	private String studentNumber;
+	private int studentNumber;
 	private String course;
 	private int period;
-
-	@ManyToOne
-	@JoinColumn(name = "project_leader")
-	private Project projectLeader; // project fk
 	private String permissions;
-
 	public int getIdStudent() {
 		return idStudent;
 	}
-
 	public void setIdStudent(int idStudent) {
 		this.idStudent = idStudent;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public Date getCadDate() {
 		return cadDate;
 	}
-
 	public void setCadDate(Date cadDate) {
 		this.cadDate = cadDate;
 	}
-
 	public Date getLastModDate() {
 		return lastModDate;
 	}
-
 	public void setLastModDate(Date lastModDate) {
 		this.lastModDate = lastModDate;
 	}
-
 	public String getStatus() {
 		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-	public String getStudentNumber() {
+	public int getStudentNumber() {
 		return studentNumber;
 	}
-
-	public void setStudentNumber(String studentNumber) {
+	public void setStudentNumber(int studentNumber) {
 		this.studentNumber = studentNumber;
 	}
-
 	public String getCourse() {
 		return course;
 	}
-
 	public void setCourse(String course) {
 		this.course = course;
 	}
-
 	public int getPeriod() {
 		return period;
 	}
-
 	public void setPeriod(int period) {
 		this.period = period;
 	}
-
-	public Project getProjectLeader() {
-		return projectLeader;
-	}
-
-	public void setProjectLeader(Project projectLeader) {
-		this.projectLeader = projectLeader;
-	}
-
 	public String getPermissions() {
 		return permissions;
 	}
-
 	public void setPermissions(String permissions) {
 		this.permissions = permissions;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -156,14 +117,10 @@ public class Student implements Serializable {
 		result = prime * result + period;
 		result = prime * result
 				+ ((permissions == null) ? 0 : permissions.hashCode());
-		result = prime * result
-				+ ((projectLeader == null) ? 0 : projectLeader.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
-		result = prime * result
-				+ ((studentNumber == null) ? 0 : studentNumber.hashCode());
+		result = prime * result + studentNumber;
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -212,22 +169,14 @@ public class Student implements Serializable {
 				return false;
 		} else if (!permissions.equals(other.permissions))
 			return false;
-		if (projectLeader == null) {
-			if (other.projectLeader != null)
-				return false;
-		} else if (!projectLeader.equals(other.projectLeader))
-			return false;
 		if (status == null) {
 			if (other.status != null)
 				return false;
 		} else if (!status.equals(other.status))
 			return false;
-		if (studentNumber == null) {
-			if (other.studentNumber != null)
-				return false;
-		} else if (!studentNumber.equals(other.studentNumber))
+		if (studentNumber != other.studentNumber)
 			return false;
 		return true;
 	}
-
+		
 }
