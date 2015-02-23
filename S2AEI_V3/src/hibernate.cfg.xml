@@ -9,12 +9,36 @@
 		<property name="connection.datasource">java:/comp/env/jdbc/dbDevInt</property>
 		<property name="current_session_context_class">thread</property>
 		
-		<mapping class="devInt.s2aei.admin.Admin"/>		
+				
 		<mapping class="devInt.s2aei.student.Student"/>
-		<mapping class="devInt.s2aei.teacher.Teacher"/>
+<!-- 		<mapping class="devInt.s2aei.admin.Admin"/> -->
+<!-- 		<mapping class="devInt.s2aei.teacher.Teacher"/> -->
 <!-- 		<mapping class="devInt.s2aei.reviewer.Reviewer"/> -->
-		<mapping class="devInt.s2aei.project.Project"/>
-		<mapping class="devInt.s2aei.knowledge.KnowledgeArea"/>
+<!-- 		<mapping class="devInt.s2aei.project.Project"/> -->
+<!-- 		<mapping class="devInt.s2aei.knowledge.KnowledgeArea"/> -->
+		
+		
+		<!-- 		Configuration MySQL and Hibernate --> 
+<!-- 		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property> -->
+<!-- 		<property name="connection.datasource">java:/comp/env/jdbc/dbDevInt</property> -->
+<!-- 		<property name="current_session_context_class">thread</property> -->
+		
+<!-- 		<mapping class="devInt.s2aei.admin.Admin"/> -->
+<!-- 		<mapping class="devInt.s2aei.student.Student"/> -->
+<!-- 		<mapping class="devInt.s2aei.teacher.Teacher"/> -->
+<!-- 		<mapping class="devInt.s2aei.inspector.Inspector"/> -->
+		
+		<!-- Configuration MySQL and Hibernate -->
+<!-- 		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property> -->
+<!-- 		<property name="connection.url">jdbc:mysql://localhost:3306/s2aei_beta_db</property> -->
+<!-- 		<property name="current_session_context_class">thread</property> -->
+<!-- 		<property name="connection.username">root</property> -->
+<!-- 		<property name="connection.password">1q2w3e</property> -->
+<!-- 		<property name="c3po.min_size">5</property> -->
+<!-- 		<property name="c3po.max_size">20</property> -->
+<!-- 		<property name="c3po.timeout">300</property> -->
+<!-- 		<property name="c3po.max_statements">50</property> -->
+<!-- 		<property name="c3po-idle_test_period">3000</property> -->
 		
 	</session-factory>
 </hibernate-configuration>

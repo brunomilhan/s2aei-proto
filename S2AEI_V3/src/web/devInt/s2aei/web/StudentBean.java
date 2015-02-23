@@ -39,24 +39,25 @@ public class StudentBean {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Excluido com sucesso!"));
 			this.student = new Student();
+			this.construct();
 		}catch(HibernateException e){
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,"N„o foi posssivel deletar.",""));
 			this.student = new Student();
 		}
 	}
-
+	
 	public void save(){
-		try{
-			studentBR.save(student);
+		try{			
+			this.studentBR.save(student);
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Cadastrado com sucesso!"));
 			this.student = new Student();
+			this.construct();
 		}catch(Exception e){
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR,"N√£o foi poss√≠vel, verifique se os dados est√£o corretos.",""));
-		}
-				
+					new FacesMessage(FacesMessage.SEVERITY_ERROR,"N„o foi possÌvel, verifique os dados inseridos.",""));
+		} 
 		
 	}
 
@@ -67,6 +68,5 @@ public class StudentBean {
 	public void setStudent(Student student) {
 		this.student = student;
 	}
-
 	
 }
