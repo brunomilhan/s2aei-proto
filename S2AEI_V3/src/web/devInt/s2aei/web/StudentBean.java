@@ -12,6 +12,8 @@ import org.hibernate.HibernateException;
 
 import devInt.s2aei.student.Student;
 import devInt.s2aei.student.StudentBR;
+import devInt.s2aei.teacher.Teacher;
+import devInt.s2aei.teacher.TeacherBR;
 
 
 @ManagedBean
@@ -60,7 +62,7 @@ public class StudentBean {
 		} 
 		
 	}
-
+	
 	public Student getStudent() {
 		return student;
 	}
