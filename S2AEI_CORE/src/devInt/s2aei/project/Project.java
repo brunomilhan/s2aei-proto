@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import devInt.s2aei.knowledge.KnowledgeArea;
 import devInt.s2aei.student.Student;
 import devInt.s2aei.teacher.Teacher;
 
@@ -38,10 +37,7 @@ public class Project implements Serializable {
 	@Column(name = "last_mod")
 	private Date lastModDate;
 	private String status;
-
-	@ManyToOne
-	@JoinColumn(name = "knowledge_area")
-	private KnowledgeArea knowledgeArea;
+	private String knowledgeArea;
 
 	@ManyToOne
 	@JoinColumn(name = "teacher_ad")
@@ -92,10 +88,10 @@ public class Project implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public KnowledgeArea getKnowledgeArea() {
+	public String getKnowledgeArea() {
 		return knowledgeArea;
 	}
-	public void setKnowledgeArea(KnowledgeArea knowledgeArea) {
+	public void setKnowledgeArea(String knowledgeArea) {
 		this.knowledgeArea = knowledgeArea;
 	}
 	public Teacher getTeacherAdvisor() {
@@ -201,7 +197,5 @@ public class Project implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
+		
 }
