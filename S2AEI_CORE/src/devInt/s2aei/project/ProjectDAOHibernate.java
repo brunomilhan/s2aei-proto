@@ -26,10 +26,11 @@ public class ProjectDAOHibernate implements ProjectDAO {
 		this.session.delete(project);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Project> listAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.session.createCriteria(Project.class).list();
 	}
 
 	public void setSession(Session session) {

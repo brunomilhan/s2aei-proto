@@ -7,5 +7,7 @@ public interface TeacherDAO {
 	public void update(Teacher teacher);
 	public void delete(Teacher teacher);
 	public List<Teacher> listAll();
+	
+	public Teacher findById(Integer idTeacher);
 
 }

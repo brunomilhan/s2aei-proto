@@ -3,7 +3,6 @@ package devInt.s2aei.student;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 
 public class StudentDAOHibernate implements StudentDAO {
 
@@ -46,12 +45,8 @@ public class StudentDAOHibernate implements StudentDAO {
 	}
 
 	// new changes v2
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Student> listById(Integer idStudent) {
-
-		return this.session.createCriteria(Student.class)
-				.createAlias("student", "std")
-				.add(Restrictions.eq("std.idStudent", idStudent)).list();
+	public Student findById(Integer idStudent) {
+		return (Student) this.session.get(Student.class, idStudent);
 	}
 }

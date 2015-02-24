@@ -42,5 +42,11 @@ public class TeacherDAOHibernate implements TeacherDAO{
 	public void setSession(Session session) {
 		this.session = session;
 	}
+
+	@Override
+	public Teacher findById(Integer idTeacher) {
+		
+		return (Teacher) this.session.get(Teacher.class, idTeacher);
+	}
 	
 }

@@ -37,6 +37,8 @@ public class Teacher implements Serializable{
 	@Column(name="project_guides")
 	private String projectGuides;
 
+	private String department;
+
 	public int getIdTeacher() {
 		return idTeacher;
 	}
@@ -117,14 +119,22 @@ public class Teacher implements Serializable{
 		this.projectGuides = projectGuides;
 	}
 
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cadDate == null) ? 0 : cadDate.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result
-				+ ((permissions == null) ? 0 : permissions.hashCode());
+				+ ((department == null) ? 0 : department.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + idTeacher;
 		result = prime * result
 				+ ((lastModDate == null) ? 0 : lastModDate.hashCode());
@@ -133,6 +143,8 @@ public class Teacher implements Serializable{
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result
 				+ ((password == null) ? 0 : password.hashCode());
+		result = prime * result
+				+ ((permissions == null) ? 0 : permissions.hashCode());
 		result = prime * result
 				+ ((projectGuides == null) ? 0 : projectGuides.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
@@ -153,15 +165,15 @@ public class Teacher implements Serializable{
 				return false;
 		} else if (!cadDate.equals(other.cadDate))
 			return false;
+		if (department == null) {
+			if (other.department != null)
+				return false;
+		} else if (!department.equals(other.department))
+			return false;
 		if (email == null) {
 			if (other.email != null)
 				return false;
 		} else if (!email.equals(other.email))
-			return false;
-		if (permissions == null) {
-			if (other.permissions != null)
-				return false;
-		} else if (!permissions.equals(other.permissions))
 			return false;
 		if (idTeacher != other.idTeacher)
 			return false;
@@ -185,6 +197,11 @@ public class Teacher implements Serializable{
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
+		if (permissions == null) {
+			if (other.permissions != null)
+				return false;
+		} else if (!permissions.equals(other.permissions))
+			return false;
 		if (projectGuides == null) {
 			if (other.projectGuides != null)
 				return false;
@@ -197,5 +214,6 @@ public class Teacher implements Serializable{
 			return false;
 		return true;
 	}
+		
 		
 }

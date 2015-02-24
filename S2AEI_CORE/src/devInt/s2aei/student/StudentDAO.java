@@ -9,5 +9,5 @@ public interface StudentDAO {
 	public List<Student> listAll();
 	
 	// new changes v2
-	public List<Student> listById(Integer idStudent);
+	public Student findById(Integer idStudent);
 }

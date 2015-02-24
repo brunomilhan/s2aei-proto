@@ -39,8 +39,8 @@ public class StudentBR {
 	}
 
 	// new changes v2
-	public List<Student> listById(Integer idStudent) {
-		return this.studentDAO.listById(idStudent);
+	public Student findById(Integer idStudent) {
+		return this.studentDAO.findById(idStudent);
 
 	}
 
