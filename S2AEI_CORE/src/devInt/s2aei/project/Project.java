@@ -37,6 +37,8 @@ public class Project implements Serializable {
 	@Column(name = "last_mod")
 	private Date lastModDate;
 	private String status;
+	
+	@Column(name="knowledge_area")
 	private String knowledgeArea;
 
 	@ManyToOne

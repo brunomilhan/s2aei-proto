@@ -8,6 +8,8 @@ import devInt.s2aei.reviewer.ReviewerDAO;
 import devInt.s2aei.reviewer.ReviewerDAOHibernate;
 import devInt.s2aei.student.StudentDAO;
 import devInt.s2aei.student.StudentDAOHibernate;
+import devInt.s2aei.studentProject.StudentProjectDAO;
+import devInt.s2aei.studentProject.StudentProjectDAOHibernate;
 import devInt.s2aei.teacher.TeacherDAO;
 import devInt.s2aei.teacher.TeacherDAOHibernate;
 
@@ -50,6 +52,13 @@ public class DAOFactory {
 		projectDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
 		
 		return projectDAO;
+	}
+	
+	public static StudentProjectDAO createStudentProjectDAO(){
+		StudentProjectDAOHibernate studentProjectDAO = new StudentProjectDAOHibernate();
+		studentProjectDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+		
+		return studentProjectDAO;
 	}
 
 }
