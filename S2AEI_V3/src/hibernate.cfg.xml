@@ -15,7 +15,7 @@
 		<mapping class="devInt.s2aei.teacher.Teacher"/>
 		<mapping class="devInt.s2aei.reviewer.Reviewer"/>
 		<mapping class="devInt.s2aei.project.Project"/>
-		<mapping class="devInt.s2aei.knowledge.KnowledgeArea"/>
+		<mapping class="devInt.s2aei.studentProject.StudentProject"/>
 		
 		
 		<!-- 		Configuration MySQL and Hibernate --> 

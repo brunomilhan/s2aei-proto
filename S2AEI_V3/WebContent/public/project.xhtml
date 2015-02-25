@@ -12,7 +12,7 @@
 	<ui:define name="corpo">
 		<h:form id="cad">
 
-			<h:inputHidden value="#{projectBean.project.idProject}" />
+			<h:inputHidden value="#{projectBean.project.idProject}" />			
 			<h:inputHidden converter="javax.faces.DateTime"
 				value="#{projectBean.project.creationDate}" />
 
@@ -29,8 +29,13 @@
 					<p:inputText id="desc" value="#{projectBean.project.description}"
 						size="40" maxlength="40" required="true"
 						requiredMessage="Descrição não pode ser nulo." />
-						
-						
+
+					<h:outputLabel value="Área de conhecimento:" for="area" />
+					<p:inputText id="area" value="#{projectBean.project.knowledgeArea}"
+						size="40" maxlength="40" required="true"
+						requiredMessage="Área de conhecimento não pode ser nulo." />
+
+
 					<p:outputLabel value="Estudante líder:" for="spinnerStudent"
 						style="font-weight:bold" />
 					<p:selectOneMenu value="#{projectBean.idStudentLeader}"
@@ -39,7 +44,7 @@
 						<f:selectItem itemLabel="Selecione" itemValue="" />
 						<f:selectItems value="#{projectBean.leaderSelect}" />
 					</p:selectOneMenu>
-					
+
 					<p:outputLabel value="Professor orientador:" for="spinnerTeacherAd"
 						style="font-weight:bold" />
 					<p:selectOneMenu value="#{projectBean.idTeacherAd}"
@@ -58,6 +63,31 @@
 			</p:panel>
 		</h:form>
 
+		<p:messages id="msg" />
+		<h:panelGrid columns="2">
+			<h:form id="memberForm">
+				<p:panel header="Adicionar membros do projeto" styleClass="well">
+					<p:messages id="msg" />
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Estudante membro:" for="spinnerMember"
+							style="font-weight:bold" />
+						<p:selectOneMenu value="#{projectBean.idStudentMember}"
+							panelStyle="width:150px" effect="fade" filter="true"
+							filterMatchMode="startsWith" id="spinnerMember">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{projectBean.leaderSelect}" />
+						</p:selectOneMenu>
+
+						<p:outputLabel></p:outputLabel>
+						<p:commandButton action="#{projectBean.addStudentMember}"
+							value="Adicionar" process="@form" update="@this" />
+					</h:panelGrid>
+				</p:panel>
+			</h:form>
+
+			
+		</h:panelGrid>
+
 		<h:form id="formList">
 			<p:dataTable var="project" id="list" value="#{projectBean.listAll()}"
 				paginator="true" style="height:500px; width:1000px" rows="10"
@@ -71,11 +101,11 @@
 				<p:column headerText="Descrição">
 					<h:outputText value="#{project.description}" />
 				</p:column>
-				
+
 				<p:column headerText="Data criação">
 					<h:outputText value="#{project.creationDate}" />
 				</p:column>
-				
+
 				<p:column headerText="Ultima modificação">
 					<h:outputText value="#{project.lastModDate}" />
 				</p:column>
@@ -83,7 +113,7 @@
 				<p:column headerText="Status">
 					<h:outputText value="#{project.status}" />
 				</p:column>
-				
+
 			</p:dataTable>
 
 		</h:form>

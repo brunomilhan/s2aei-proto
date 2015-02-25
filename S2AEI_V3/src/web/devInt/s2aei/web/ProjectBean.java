@@ -12,12 +12,16 @@ import javax.faces.model.SelectItem;
 
 import org.hibernate.HibernateException;
 
+import web.devInt.s2aei.web.util.SessionUtil;
+import devInt.s2aei.util.Logger;
 import devInt.s2aei.project.Project;
 import devInt.s2aei.project.ProjectBR;
 import devInt.s2aei.student.Student;
 import devInt.s2aei.student.StudentBR;
+import devInt.s2aei.studentProject.StudentProjectBR;
 import devInt.s2aei.teacher.Teacher;
 import devInt.s2aei.teacher.TeacherBR;
+import devInt.s2aei.util.BRException;
 
 @ManagedBean
 @RequestScoped
@@ -32,6 +36,11 @@ public class ProjectBean {
 
 	private StudentBR studentBR = new StudentBR();
 	private TeacherBR TeacherBR = new TeacherBR();
+
+	// public List<Student> studentGroupList;
+	private Integer idStudentMember;
+
+	private SessionBean sessionBean = SessionUtil.getSessionBean();
 
 	@PostConstruct
 	public void construct() {
@@ -65,19 +74,21 @@ public class ProjectBean {
 				this.project.setLeader(this.studentBR
 						.findById(this.idStudentLeader));
 			}
-
 			if (this.idTeacherAd != null || this.idTeacherAd != 0) {
 				this.project.setTeacherAdvisor(this.TeacherBR
 						.findById(this.idTeacherAd));
 			}
 
 			projectBR.save(project);
+
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Cadastrado com sucesso!"));
+
+			//this.addStudentInGroup();
+
 			this.project = new Project();
 			this.construct();
-		} catch (Exception e) {
-			System.out.println("errroooo>>> " + e);
+		} catch (BRException e) {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
@@ -85,6 +96,46 @@ public class ProjectBean {
 							""));
 		}
 
+	}
+
+	// public void addStudentInGroup() {
+	// //List<Student> studentGroupList = this.sessionBean.getStudentMembers();
+	//
+	// while (!studentGroupList.isEmpty()) {
+	// for (Student student : studentGroupList) {
+	// @SuppressWarnings("unused")
+	// StudentProjectBR studentProjectBR = new StudentProjectBR(
+	// project, student);
+	// }
+	// }
+	// }
+
+	public void addStudentInGroup() {
+		Student student = sessionBean.getStudentMembers();
+		Logger.log(Logger.DBG, Logger.MB_PROJECT, "Persistir estudante no DB - "
+				+ student.getName());
+		@SuppressWarnings("unused")
+		StudentProjectBR studentProjectBR = new StudentProjectBR(project,
+				student);
+	}
+
+	public void addStudentMember() {
+		Student student = this.studentBR.findById(idStudentMember);
+		Logger.log(Logger.DBG, Logger.MB_PROJECT, "Add estudante na Lista - "
+				+ student.getName());
+
+		// this.studentGroupList.add(student);
+
+		// sessionBean.setStudentMembers(student);
+		sessionBean.setStudentMembers(student);
+		// this.sessionBean.setStudentMembers(student);
+		// StudentProjectBR studentProjectBR = new StudentProjectBR(project,
+		// student);
+
+		FacesContext.getCurrentInstance().addMessage(
+				null,
+				new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						"Membro adicionado.", ""));
 	}
 
 	// List Selects
@@ -155,6 +206,14 @@ public class ProjectBean {
 
 	public void setIdTeacherAd(Integer idTeacherAd) {
 		this.idTeacherAd = idTeacherAd;
+	}
+
+	public Integer getIdStudentMember() {
+		return idStudentMember;
+	}
+
+	public void setIdStudentMember(Integer idStudentMember) {
+		this.idStudentMember = idStudentMember;
 	}
 
 }
