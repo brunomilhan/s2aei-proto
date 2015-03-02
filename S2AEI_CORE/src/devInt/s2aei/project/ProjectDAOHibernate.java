@@ -48,4 +48,9 @@ public class ProjectDAOHibernate implements ProjectDAO {
 		
 	}
 
+	@Override
+	public Project findById(Integer idProject) {
+		return (Project) this.session.get(Project.class, idProject);
+	}
+
 }

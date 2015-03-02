@@ -14,5 +14,6 @@ public interface ProjectDAO {
 	
 	
 	public List<Project> listAll();
+	public Project findById(Integer idProject);
 
 }
