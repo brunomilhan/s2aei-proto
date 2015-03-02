@@ -63,30 +63,29 @@
 			</p:panel>
 		</h:form>
 
-		<p:messages id="msg" />
-		<h:panelGrid columns="2">
-			<h:form id="memberForm">
-				<p:panel header="Adicionar membros do projeto" styleClass="well">
-					<p:messages id="msg" />
-					<h:panelGrid columns="2">
-						<p:outputLabel value="Estudante membro:" for="spinnerMember"
-							style="font-weight:bold" />
-						<p:selectOneMenu value="#{projectBean.idStudentMember}"
-							panelStyle="width:150px" effect="fade" filter="true"
-							filterMatchMode="startsWith" id="spinnerMember">
-							<f:selectItem itemLabel="Selecione" itemValue="" />
-							<f:selectItems value="#{projectBean.leaderSelect}" />
-						</p:selectOneMenu>
+<!-- java util list not work on session -->
+<!-- 		<p:messages id="msg" /> -->
+<!-- 		<h:panelGrid columns="2"> -->
+<!-- 			<h:form id="memberForm"> -->
+<!-- 				<p:panel header="Adicionar membros do projeto" styleClass="well"> -->
+<!-- 					<p:messages id="msg" /> -->
+<!-- 					<h:panelGrid columns="2"> -->
+<!-- 						<p:outputLabel value="Estudante membro:" for="spinnerMember" -->
+<!-- 							style="font-weight:bold" /> -->
+<!-- 						<p:selectOneMenu value="#{projectBean.idStudentMember}" -->
+<!-- 							panelStyle="width:150px" effect="fade" filter="true" -->
+<!-- 							filterMatchMode="startsWith" id="spinnerMember"> -->
+<!-- 							<f:selectItem itemLabel="Selecione" itemValue="" /> -->
+<!-- 							<f:selectItems value="#{projectBean.leaderSelect}" /> -->
+<!-- 						</p:selectOneMenu> -->
 
-						<p:outputLabel></p:outputLabel>
-						<p:commandButton action="#{projectBean.addStudentMember}"
-							value="Adicionar" process="@form" update="@this" />
-					</h:panelGrid>
-				</p:panel>
-			</h:form>
-
-			
-		</h:panelGrid>
+<!-- 						<p:outputLabel></p:outputLabel> -->
+<!-- 						<p:commandButton action="" -->
+<!-- 						value="Adicionar" process="@form" update="@this" /> -->
+<!-- 					</h:panelGrid> -->
+<!-- 				</p:panel> -->
+<!-- 			</h:form> -->
+<!-- 		</h:panelGrid> -->
 
 		<h:form id="formList">
 			<p:dataTable var="project" id="list" value="#{projectBean.listAll()}"

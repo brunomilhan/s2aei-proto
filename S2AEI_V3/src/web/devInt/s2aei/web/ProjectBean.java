@@ -80,11 +80,13 @@ public class ProjectBean {
 			}
 
 			projectBR.save(project);
+			// Student student = sessionBean.getStudentMembers();
+			// StudentProjectBR studentProjectBR = new StudentProjectBR(
+			// project, student);
+			this.saveStudentInGroup();
 
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Cadastrado com sucesso!"));
-
-			//this.addStudentInGroup();
 
 			this.project = new Project();
 			this.construct();
@@ -92,32 +94,32 @@ public class ProjectBean {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Não foi possível, verifique os dados inseridos.",
-							""));
+							"Não foi possível. " + e, ""));
 		}
 
 	}
 
-	// public void addStudentInGroup() {
-	// //List<Student> studentGroupList = this.sessionBean.getStudentMembers();
-	//
-	// while (!studentGroupList.isEmpty()) {
-	// for (Student student : studentGroupList) {
-	// @SuppressWarnings("unused")
-	// StudentProjectBR studentProjectBR = new StudentProjectBR(
-	// project, student);
-	// }
-	// }
-	// }
+// java util list not work on session
+//	public void saveStudentInGroup() {
+//		List<Student> studentGroupList = this.sessionBean.getStudentMembers();
+//
+//		while (!studentGroupList.isEmpty()) {
+//			for (Student student : studentGroupList) {
+//				@SuppressWarnings("unused")
+//				StudentProjectBR studentProjectBR = new StudentProjectBR(
+//						project, student);
+//			}
+//		}
+//	}
 
-	public void addStudentInGroup() {
-		Student student = sessionBean.getStudentMembers();
-		Logger.log(Logger.DBG, Logger.MB_PROJECT, "Persistir estudante no DB - "
-				+ student.getName());
-		@SuppressWarnings("unused")
-		StudentProjectBR studentProjectBR = new StudentProjectBR(project,
-				student);
-	}
+	 public void saveStudentInGroup() {
+	 Student student = sessionBean.getStudentMembers();
+	 Logger.log(Logger.DBG, Logger.MB_PROJECT,
+	 "Persistir estudante membro no DB - " + student.getName());
+	 @SuppressWarnings("unused")
+	 StudentProjectBR studentProjectBR = new StudentProjectBR(project,
+	 student);
+	 }
 
 	public void addStudentMember() {
 		Student student = this.studentBR.findById(idStudentMember);
