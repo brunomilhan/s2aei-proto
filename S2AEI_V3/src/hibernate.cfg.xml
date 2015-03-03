@@ -17,6 +17,8 @@
 		<mapping class="devInt.s2aei.project.Project"/>
 		<mapping class="devInt.s2aei.studentProject.StudentProject"/>
 		<mapping class="devInt.s2aei.user.User"/>
+		<mapping class="devInt.s2aei.canvas.FrameCanvas"/>
+		<mapping class="devInt.s2aei.canvas.QuestionCanvas"/>
 		
 		
 		<!-- 		Configuration MySQL and Hibernate --> 

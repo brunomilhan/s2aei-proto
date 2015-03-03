@@ -83,7 +83,7 @@ public class ProjectBean {
 			// Student student = sessionBean.getStudentMembers();
 			// StudentProjectBR studentProjectBR = new StudentProjectBR(
 			// project, student);
-			this.saveStudentInGroup();
+			//this.saveStudentInGroup();
 
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Cadastrado com sucesso!"));
