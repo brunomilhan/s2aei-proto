@@ -10,19 +10,36 @@
 <ui:composition>
 
 	<p:menubar style="height:30px;">
+		<sec:ifAnyGranted roles="ROLE_STUDENT,ROLE_ADMIN, ROLE_REVIEWER, ROLE_TEACHER">
+			<p:menuitem value="Inicio" icon="ui-icon-home"
+				url="http://localhost:8090/s2aei_v2/private/home.jsf" />
+		</sec:ifAnyGranted>
 
-		<p:menuitem value="Inicio" icon="ui-icon-home"
-			url="http://localhost:8090/s2aei_v2/public/home.jsf" />
-		<p:submenu label="Cadastros/Consultas" icon="ui-icon-contact">
-			<p:menuitem value="Alunos" icon="ui-icon-contact"
-				url="http://localhost:8090/s2aei_v2/public/student.jsf" />
-		</p:submenu>
-		<p:submenu label="Projetos" icon="ui-icon-clipboard">
-			<p:menuitem value="Novo" icon="ui-icon-plus"
-				url="http://localhost:8090/s2aei_v2/public/project.jsf" />
-			<p:menuitem value="Adicionar membros" icon="ui-icon-plus"
-				url="http://localhost:8090/s2aei_v2/public/studentProject.jsf" />
-		</p:submenu>
+		<sec:ifAnyGranted roles="ROLE_ADMIN">
+			<p:submenu label="Cadastros/Consultas" icon="ui-icon-contact">
+				<p:menuitem value="Alunos" icon="ui-icon-contact"
+					url="http://localhost:8090/s2aei_v2/public/student.jsf" />
+			</p:submenu>
+		</sec:ifAnyGranted>
+
+		<sec:ifAnyGranted roles="ROLE_STUDENT">
+			<p:submenu label="Projetos" icon="ui-icon-clipboard">
+				<p:menuitem value="Novo" icon="ui-icon-plus"
+					url="http://localhost:8090/s2aei_v2/private/project.jsf" />
+				<p:menuitem value="Adicionar membros" icon="ui-icon-plus"
+					url="http://localhost:8090/s2aei_v2/private/studentProject.jsf" />
+			</p:submenu>
+		</sec:ifAnyGranted>
+		
+		<sec:ifAnyGranted roles="ROLE_STUDENT,ROLE_ADMIN, ROLE_REVIEWER, ROLE_TEACHER">
+			<f:facet name="options">
+				<p:commandButton value="Sair" style="height:30px;"
+					icon="ui-icon-power"
+					onclick="document.location='#{request.contextPath}/j_spring_security_logout'"
+					title="Sair" />
+			</f:facet>
+		</sec:ifAnyGranted>
+
 	</p:menubar>
 </ui:composition>
 </html>

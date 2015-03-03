@@ -3,11 +3,11 @@
 	xmlns:b="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
-	<http>
+	<http use-expressions="true">
 
-		<intercept-url pattern="/private/**" access="ROLE_ADMIN" />		
+		<intercept-url pattern="/private/**" access="hasAnyRole('ROLE_ADMIN','ROLE_STUDENT', 'ROLE_REVIEWER', 'ROLE_TEACHER')"/>
 		<form-login login-page="/public/login.jsf"
-			always-use-default-target="true" default-target-url="/public/home.jsf"
+			always-use-default-target="true" default-target-url="/private/home.jsf"
 			authentication-failure-url="/public/login.jsf?login_error=1" />
 		<logout />
 		<remember-me />

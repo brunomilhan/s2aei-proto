@@ -17,7 +17,7 @@ public class SessionBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -8787885309651441508L;
-	private String init = "init";
+	private String init = "Bem vindo";
 
 	private Student studentMembers;
 
