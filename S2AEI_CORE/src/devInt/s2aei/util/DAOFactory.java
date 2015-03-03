@@ -12,6 +12,8 @@ import devInt.s2aei.studentProject.StudentProjectDAO;
 import devInt.s2aei.studentProject.StudentProjectDAOHibernate;
 import devInt.s2aei.teacher.TeacherDAO;
 import devInt.s2aei.teacher.TeacherDAOHibernate;
+import devInt.s2aei.user.UserDAO;
+import devInt.s2aei.user.UserDAOHibernate;
 
 public class DAOFactory {
 
@@ -59,6 +61,13 @@ public class DAOFactory {
 		studentProjectDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
 		
 		return studentProjectDAO;
+	}
+	
+	public static UserDAO createUserDAO(){
+		UserDAOHibernate userDAO = new UserDAOHibernate();
+		userDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+		
+		return userDAO;
 	}
 
 }
