@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/login.xhtml">
+	<ui:define name="corpo">
+
+		<div class="alert alert-error">
+			<h:panelGroup rendered="#{!empty param.login_error}">
+			<span style="font-weight: bold;"> Erro! </span>
+				<span style="font-color: red">Login ou senha incorretos.</span>
+			
+		</h:panelGroup>
+		</div>
+		<form class="well" method="post" 
+			action="#{request.contextPath}/j_spring_security_check">
+			<h:graphicImage library="imagens" name="login.png"/><br />
+			<input type="text" class="span3" placeholder="Usuario"
+				name='j_username' /><br /> 
+				<input type="password" class="span3"
+				placeholder="Senha" name='j_password' /><br />
+			
+			<input type="checkbox"   name="_spring_security_remember_me" />
+			Lembrar-me     
+			<p:spacer width="30"  /> 
+			<button type="submit" class="btn" style="color: #666" >Entrar</button>
+			
+			<hr />
+
+			<script>
+				document.getElementBydId("login").j_username.value = "#{SPRING_SECURITY_LAST_USERNAME}";
+			</script>
+		</form>
+
+	</ui:define>
+</ui:composition>
+
+</html>

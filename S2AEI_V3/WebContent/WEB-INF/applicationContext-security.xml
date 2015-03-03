@@ -5,7 +5,7 @@
                         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 	<http>
 
-		<intercept-url pattern="/private_admin/**" access="ROLE_ADMIN" />		
+		<intercept-url pattern="/private/**" access="ROLE_ADMIN" />		
 		<form-login login-page="/public/login.jsf"
 			always-use-default-target="true" default-target-url="/public/home.jsf"
 			authentication-failure-url="/public/login.jsf?login_error=1" />
@@ -15,7 +15,7 @@
 	<authentication-manager>
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="dbDevInt"
-				authorities-by-username-query="SELECT u.login, u.auth_role 
+				authorities-by-username-query="SELECT u.login, u.permission
 											 FROM user u
 											 WHERE u.login = ?"
 				users-by-username-query="SELECT login, password, true 
