@@ -3,6 +3,7 @@ package devInt.s2aei.project;
 import java.util.Date;
 import java.util.List;
 
+import devInt.s2aei.canvas.CanvasBR;
 import devInt.s2aei.student.Student;
 import devInt.s2aei.util.BRException;
 import devInt.s2aei.util.DAOFactory;
@@ -37,12 +38,23 @@ public class ProjectBR {
 		if (id == 0 || id == null) {
 			project.setCreationDate(dateNow);
 			project.setStatus("novo");
+			this.generateCanvas(project);
 
 			this.projectDAO.save(project);
 
 		} else
 			this.projectDAO.update(project);
 
+	}
+
+	public void generateCanvas(Project project) throws BRException {
+		CanvasBR canvasBR = new CanvasBR();
+		
+		try {
+			canvasBR.generateQuestions2Project(project);
+		} catch (BRException e) {
+			throw new BRException("Não foi possível gerar as perguntas.");
+		}
 	}
 
 	public void changeStatus(Project project, String status) throws BRException {
@@ -60,7 +72,7 @@ public class ProjectBR {
 		return this.projectDAO.listAll();
 	}
 
-	public Project findById(Integer idProject) {		
+	public Project findById(Integer idProject) {
 		return this.projectDAO.findById(idProject);
 	}
 

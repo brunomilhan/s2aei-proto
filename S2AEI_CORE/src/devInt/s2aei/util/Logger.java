@@ -8,10 +8,12 @@ public class Logger {
 	public static final String MB_PROJECT = "MBProject";
 	public static final String SESSION_BEAN = "SessionBean";
 	public static final String SESSION_UTIL = "SessionUtil";
+	public static final String CANVAS_QUESTION = "CanvasQuestion";
 	
 	// BRs
 	public static final String PROJECT_BR = "Project BR";
 	public static final String STUDENT_PROJECT_BR = "StudentProject BR";
+	public static final String CANVAS_BR = "Canvas BR";
 	
 	
 	// types

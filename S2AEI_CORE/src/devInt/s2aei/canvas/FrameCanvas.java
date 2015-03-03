@@ -19,7 +19,9 @@ public class FrameCanvas implements Serializable {
 	@Id
 	@GeneratedValue
 	private int idFrameCanvas;
-
+	
+	
+	private String description;
 	private String comment;
 	private int note;
 	private String status;
@@ -47,12 +49,20 @@ public class FrameCanvas implements Serializable {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
+		result = prime * result
+				+ ((description == null) ? 0 : description.hashCode());
 		result = prime * result + idFrameCanvas;
 		result = prime * result + note;
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
@@ -72,6 +82,11 @@ public class FrameCanvas implements Serializable {
 				return false;
 		} else if (!comment.equals(other.comment))
 			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
 		if (idFrameCanvas != other.idFrameCanvas)
 			return false;
 		if (note != other.note)
@@ -83,6 +98,7 @@ public class FrameCanvas implements Serializable {
 			return false;
 		return true;
 	}
+
 	
 	
 }
