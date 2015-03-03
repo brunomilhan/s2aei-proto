@@ -2,6 +2,8 @@ package devInt.s2aei.util;
 
 import devInt.s2aei.admin.AdminDAO;
 import devInt.s2aei.admin.AdminDAOHibernate;
+import devInt.s2aei.canvas.CanvasDAO;
+import devInt.s2aei.canvas.CanvasDAOHibernate;
 import devInt.s2aei.project.ProjectDAO;
 import devInt.s2aei.project.ProjectDAOHibernate;
 import devInt.s2aei.reviewer.ReviewerDAO;
@@ -68,6 +70,13 @@ public class DAOFactory {
 		userDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
 		
 		return userDAO;
+	}
+	
+	public static CanvasDAO createCanvasDAO(){
+		CanvasDAOHibernate canvasDAO = new CanvasDAOHibernate();
+		canvasDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+		
+		return canvasDAO;
 	}
 
 }
