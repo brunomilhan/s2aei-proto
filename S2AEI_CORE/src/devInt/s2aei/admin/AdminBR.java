@@ -2,6 +2,7 @@ package devInt.s2aei.admin;
 
 import java.util.List;
 
+import devInt.s2aei.user.UserBR;
 import devInt.s2aei.util.DAOFactory;
 
 public class AdminBR {
@@ -15,6 +16,10 @@ public class AdminBR {
 		Integer idAdmin = admin.getIdAdmin();
 		
 		if(idAdmin == null || idAdmin == 0){
+			
+			UserBR userBR = new UserBR(admin.getEmail(), admin.getPassword(), "ROLE_ADMIN");
+			userBR.save();
+			
 			this.adminDAO.save(admin);
 		}else{
 			this.adminDAO.update(admin);

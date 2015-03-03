@@ -2,32 +2,36 @@ package devInt.s2aei.reviewer;
 
 import java.util.List;
 
+import devInt.s2aei.user.UserBR;
 import devInt.s2aei.util.DAOFactory;
 
 public class ReviewerBR {
 	
-	private ReviewerDAO inspectorDAO;
+	private ReviewerDAO reviewerDAO;
 	
 	public ReviewerBR(){
-		this.inspectorDAO = DAOFactory.createInspectorDAO();
+		this.reviewerDAO = DAOFactory.createInspectorDAO();
 	}
 
-	public void save(Reviewer inspector){
-		Integer idAdmin = inspector.getIdInspector();
+	public void save(Reviewer reviewer){
+		Integer idAdmin = reviewer.getIdInspector();
 		
 		if(idAdmin == null || idAdmin == 0){
-			this.inspectorDAO.save(inspector);
+			this.reviewerDAO.save(reviewer);
+			
+			UserBR userBR = new UserBR(reviewer.getEmail(), reviewer.getPassword(), "ROLE_REVIEWER");
+			userBR.save();
 		}else{
-			this.inspectorDAO.update(inspector);
+			this.reviewerDAO.update(reviewer);
 		}
 	}
 
-	public void delete(Reviewer inspector){
-		this.inspectorDAO.delete(inspector);
+	public void delete(Reviewer reviewer){
+		this.reviewerDAO.delete(reviewer);
 	}
 
 	public List<Reviewer> listAll(){
-		return this.inspectorDAO.listAll();
+		return this.reviewerDAO.listAll();
 	}
 
 }

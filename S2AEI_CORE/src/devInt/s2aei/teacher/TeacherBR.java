@@ -3,6 +3,7 @@ package devInt.s2aei.teacher;
 import java.util.Date;
 import java.util.List;
 
+import devInt.s2aei.user.UserBR;
 import devInt.s2aei.util.DAOFactory;
 
 public class TeacherBR {
@@ -23,6 +24,9 @@ public class TeacherBR {
 			teacher.setStatus("active");
 			teacher.setCadDate(dateNow);
 			teacher.setPermissions("teacher");
+			
+			UserBR userBR = new UserBR(teacher.getEmail(), teacher.getPassword(), "ROLE_TEACHER");
+			userBR.save();
 			
 			this.teacherDAO.save(teacher);
 		}else{
