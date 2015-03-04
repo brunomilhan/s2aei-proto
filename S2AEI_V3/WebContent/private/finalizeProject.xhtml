@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/templates/interna.xhtml">
+	<ui:define name="corpo">
+		<p:messages id="msg" />
+		<h:form id="formList">			
+			<p:dataTable var="project" id="list" value="#{projectBean.listAll()}"
+				paginator="true" style="height:500px; width:1000px" rows="10"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} ">
+				<f:facet name="header">Projetos do usuário</f:facet>
+
+				<p:column headerText="Título" filterBy="title">
+					<h:outputText value="#{project.title}" />
+				</p:column>
+
+				<p:column headerText="Descrição">
+					<h:outputText value="#{project.description}" />
+				</p:column>
+
+				<p:column headerText="Data criação">
+					<h:outputText value="#{project.creationDate}" />
+				</p:column>
+
+				<p:column headerText="Ultima modificação">
+					<h:outputText value="#{project.lastModDate}" />
+				</p:column>
+
+				<p:column headerText="Status">
+					<h:outputText value="#{project.status}" />
+				</p:column>
+
+				<p:column headerText="Finalizar Projeto">
+					<p:commandButton id="set" icon="ui-icon-check"
+						action="#{projectBean.finalizeProject}" process="@this"
+						update=" :formList" ajax="false" title="Finalizar"
+						onclick="if(!confirm('Deseja finalizar?')) return false;">
+						<f:setPropertyActionListener target="#{projectBean.project}"
+							value="#{project}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

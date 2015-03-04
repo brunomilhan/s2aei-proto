@@ -41,10 +41,16 @@ public class ProjectBean {
 	private Integer idStudentMember;
 
 	private SessionBean sessionBean = SessionUtil.getSessionBean();
+	private Student student;
 
 	@PostConstruct
 	public void construct() {
-		listAll = this.projectBR.listAll();
+		// this.student = this.studentBR.findStudentByLogin(SessionBean
+		// .getLoginUserLogged());
+		// listAll.add(
+		// this.projectBR.findProjectActiveByStudent(this.student));
+
+		this.listAll = this.projectBR.listAll();
 	}
 
 	public List<Project> listAll() {
@@ -83,7 +89,7 @@ public class ProjectBean {
 			// Student student = sessionBean.getStudentMembers();
 			// StudentProjectBR studentProjectBR = new StudentProjectBR(
 			// project, student);
-			//this.saveStudentInGroup();
+			// this.saveStudentInGroup();
 
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Cadastrado com sucesso!"));
@@ -99,27 +105,27 @@ public class ProjectBean {
 
 	}
 
-// java util list not work on session
-//	public void saveStudentInGroup() {
-//		List<Student> studentGroupList = this.sessionBean.getStudentMembers();
-//
-//		while (!studentGroupList.isEmpty()) {
-//			for (Student student : studentGroupList) {
-//				@SuppressWarnings("unused")
-//				StudentProjectBR studentProjectBR = new StudentProjectBR(
-//						project, student);
-//			}
-//		}
-//	}
+	// java util list not work on session
+	// public void saveStudentInGroup() {
+	// List<Student> studentGroupList = this.sessionBean.getStudentMembers();
+	//
+	// while (!studentGroupList.isEmpty()) {
+	// for (Student student : studentGroupList) {
+	// @SuppressWarnings("unused")
+	// StudentProjectBR studentProjectBR = new StudentProjectBR(
+	// project, student);
+	// }
+	// }
+	// }
 
-	 public void saveStudentInGroup() {
-	 Student student = sessionBean.getStudentMembers();
-	 Logger.log(Logger.DBG, Logger.MB_PROJECT,
-	 "Persistir estudante membro no DB - " + student.getName());
-	 @SuppressWarnings("unused")
-	 StudentProjectBR studentProjectBR = new StudentProjectBR(project,
-	 student);
-	 }
+	public void saveStudentInGroup() {
+		Student student = sessionBean.getStudentMembers();
+		Logger.log(Logger.DBG, Logger.MB_PROJECT,
+				"Persistir estudante membro no DB - " + student.getName());
+		@SuppressWarnings("unused")
+		StudentProjectBR studentProjectBR = new StudentProjectBR(project,
+				student);
+	}
 
 	public void addStudentMember() {
 		Student student = this.studentBR.findById(idStudentMember);
@@ -183,6 +189,21 @@ public class ProjectBean {
 				item.setEscape(true);
 				select.add(item);
 			}
+		}
+	}
+
+	// new changes before deploy
+	public void finalizeProject() {
+		try {
+			this.projectBR.finalizeProject(project);
+
+			new FacesMessage(FacesMessage.SEVERITY_INFO,
+			"Projeto Finalizado com sucesso.", "");
+
+			this.construct();
+		} catch (BRException e) {
+			new FacesMessage(FacesMessage.SEVERITY_INFO, "Não foi possível. " + e.getMessage(),
+					"");
 		}
 	}
 
