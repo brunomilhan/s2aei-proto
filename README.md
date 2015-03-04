@@ -1,4 +1,4 @@
-# devInt.utfpr.S2AEI
+# S2AEI (Protótipo) - Sistema de Acompanhamento e Avaliação de Empreendimentos Inovadores
 Projeto para conclusão da disciplina de Desenvolvimento Integrado de Sistemas - UTFPR.
 
 1. Contexto geral:
