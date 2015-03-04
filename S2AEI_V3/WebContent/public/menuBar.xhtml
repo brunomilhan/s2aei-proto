@@ -31,6 +31,14 @@
 			</p:submenu>
 			<p:menuitem value="Preencher questões Canvas" icon="ui-icon-clipboard"
 					url="http://localhost:8090/s2aei_v2/private/fillCanvas.jsf" />
+					
+			<p:menuitem value="Ver Questões" icon="ui-icon-clipboard"
+					url="http://localhost:8090/s2aei_v2/private/viewCanvasQuest.jsf" />
+		</sec:ifAnyGranted>
+		
+		<sec:ifAnyGranted roles="ROLE_TEACHER">
+			<p:menuitem value="Ver Questões" icon="ui-icon-clipboard"
+					url="http://localhost:8090/s2aei_v2/private/viewCanvasQuest.jsf" />
 		</sec:ifAnyGranted>
 		
 		<sec:ifAnyGranted roles="ROLE_STUDENT,ROLE_ADMIN, ROLE_REVIEWER, ROLE_TEACHER">
