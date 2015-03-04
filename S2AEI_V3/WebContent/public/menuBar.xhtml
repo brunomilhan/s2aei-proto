@@ -29,6 +29,8 @@
 				<p:menuitem value="Adicionar membros" icon="ui-icon-plus"
 					url="http://localhost:8090/s2aei_v2/private/studentProject.jsf" />
 			</p:submenu>
+			<p:menuitem value="Preencher questões Canvas" icon="ui-icon-clipboard"
+					url="http://localhost:8090/s2aei_v2/private/fillCanvas.jsf" />
 		</sec:ifAnyGranted>
 		
 		<sec:ifAnyGranted roles="ROLE_STUDENT,ROLE_ADMIN, ROLE_REVIEWER, ROLE_TEACHER">
