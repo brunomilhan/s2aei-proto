@@ -75,5 +75,16 @@ public class ProjectBR {
 	public Project findById(Integer idProject) {
 		return this.projectDAO.findById(idProject);
 	}
+	
+	public Project findProjectActiveByStudent(Student student){
+		List<Project> projects = this.projectDAO.findProjectByStudent(student);
+		
+		for (Project project : projects) {
+			if (project.getStatus() != "encerrado" || project.getStatus() != "inativo") {
+				return project;
+			}
+		}
+		return null;
+	}
 
 }

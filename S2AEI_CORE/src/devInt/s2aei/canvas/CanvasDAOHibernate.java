@@ -3,6 +3,9 @@ package devInt.s2aei.canvas;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
+import devInt.s2aei.project.Project;
 
 public class CanvasDAOHibernate implements CanvasDAO {
 	
@@ -59,5 +62,11 @@ public class CanvasDAOHibernate implements CanvasDAO {
 
 	public void setSession(Session session) {
 		this.session = session;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<QuestionCanvas> listByProject(Project project) {
+		return this.session.createCriteria(QuestionCanvas.class).add(Restrictions.eq("project", project)).list();
 	}
 }

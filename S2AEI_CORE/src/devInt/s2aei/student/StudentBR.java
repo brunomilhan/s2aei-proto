@@ -48,4 +48,8 @@ public class StudentBR {
 
 	}
 
+	public Student findStudentByLogin(String login) {
+		return this.studentDAO.findStudentByLogin(login);
+	}
+
 }

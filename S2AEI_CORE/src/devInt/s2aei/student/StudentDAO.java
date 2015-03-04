@@ -10,4 +10,5 @@ public interface StudentDAO {
 	
 	// new changes v2
 	public Student findById(Integer idStudent);
+	public Student findStudentByLogin(String login);
 }

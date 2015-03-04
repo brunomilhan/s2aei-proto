@@ -1,5 +1,7 @@
 package devInt.s2aei.canvas;
 
+import java.util.List;
+
 import devInt.s2aei.project.Project;
 import devInt.s2aei.util.BRException;
 import devInt.s2aei.util.DAOFactory;
@@ -21,5 +23,13 @@ public class CanvasBR {
 			Logger.log(Logger.CANVAS_BR, Logger.DBG, "Erro ao gerar as perguntas Canvas. " + e);
 			
 		}
+	}
+
+	public List<QuestionCanvas> listAll() {		
+		return this.canvasDAO.listAllQuests();
+	}
+	
+	public List<QuestionCanvas> listByProject(Project project){
+		return this.canvasDAO.listByProject(project);
 	}
 }

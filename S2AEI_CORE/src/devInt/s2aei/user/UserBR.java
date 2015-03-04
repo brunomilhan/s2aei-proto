@@ -7,6 +7,10 @@ public class UserBR {
 	private UserDAO userDAO;
 	private User user = new User();
 	
+	public UserBR(){
+		
+	}
+	
 	public UserBR(String login, String password, String permission) {
 		this.userDAO = DAOFactory.createUserDAO();
 				
@@ -18,6 +22,10 @@ public class UserBR {
 	
 	public void save(){
 		this.userDAO.save(user);
+	}
+
+	public User findByLogin(String login) {
+		return this.userDAO.findByLogin(login);
 	}
 
 }

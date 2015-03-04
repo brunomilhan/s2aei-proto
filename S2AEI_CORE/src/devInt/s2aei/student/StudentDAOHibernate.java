@@ -3,6 +3,7 @@ package devInt.s2aei.student;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 public class StudentDAOHibernate implements StudentDAO {
 
@@ -49,4 +50,11 @@ public class StudentDAOHibernate implements StudentDAO {
 	public Student findById(Integer idStudent) {
 		return (Student) this.session.get(Student.class, idStudent);
 	}
+
+	@Override
+	public Student findStudentByLogin(String login) {
+		return (Student) this.session.createCriteria(Student.class).add(Restrictions.eq("email", login)).uniqueResult();
+	}
+	
+	
 }
