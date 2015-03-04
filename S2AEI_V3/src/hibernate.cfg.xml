@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- Configuration MySQL and Hibernate -->
+		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+		<property name="connection.datasource">java:/comp/env/jdbc/dbDevInt</property>
+		<property name="current_session_context_class">thread</property>
+		
+				
+		<mapping class="devInt.s2aei.student.Student"/>
+		<mapping class="devInt.s2aei.admin.Admin"/>
+		<mapping class="devInt.s2aei.teacher.Teacher"/>
+		<mapping class="devInt.s2aei.reviewer.Reviewer"/>
+		<mapping class="devInt.s2aei.project.Project"/>
+		<mapping class="devInt.s2aei.studentProject.StudentProject"/>
+		<mapping class="devInt.s2aei.user.User"/>
+		<mapping class="devInt.s2aei.canvas.FrameCanvas"/>
+		<mapping class="devInt.s2aei.canvas.QuestionCanvas"/>
+		<mapping class="devInt.s2aei.reviewer.Projects2Review"/>
+		<mapping class="devInt.s2aei.reviewer.ProjectsRevised"/>
+		
+	</session-factory>
+</hibernate-configuration>

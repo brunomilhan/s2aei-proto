@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/templates/interna.xhtml">
+	<ui:define name="corpo">
+		<h:form id="cad">
+			
+			<h:inputHidden value="#{studentBean.student.idStudent}" />			
+			<h:inputHidden value="#{studentBean.student.permissions}" />
+			<h:inputHidden value="#{studentBean.student.status}" />	
+			<h:inputHidden converter="javax.faces.DateTime" value="#{studentBean.student.cadDate}" />			
+			
+			<p:panel header="Cadastro de Estudantes" styleClass="well">
+				<p:messages id="msg" />
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Nome:" for="name" />
+					<p:inputText id="name" label="Nome Contato"
+						value="#{studentBean.student.name}" size="40" required="true"
+						requiredMessage="Nome não pode ser nulo." maxlength="45">
+					</p:inputText>
+
+					<h:outputLabel value="Email:" for="email" />
+					<p:inputText id="email" label="email"
+						value="#{studentBean.student.email}" size="40" maxlength="40"
+						required="true" requiredMessage="Email não pode ser nulo." />
+
+					<h:outputLabel value="Senha:" for="pass" />
+					<p:password id="pass" label="pass" required="true"
+						requiredMessage="Senha não pode ser nula."
+						value="#{studentBean.student.password}" size="40" />
+
+					<h:outputLabel value="Matricula:" for="mat" />
+					<p:inputText id="mat" label="mat" required="true"
+						requiredMessage="Matricula não pode ser nula."
+						value="#{studentBean.student.studentNumber}" size="40" />
+
+					<h:outputLabel value="Curso:" for="course" />
+					<p:inputText id="course" label="course"
+						value="#{studentBean.student.course}" size="40" />
+
+					<h:outputLabel value="Periodo:" for="period" />
+					<p:inputText id="period" label="period"
+						value="#{studentBean.student.period}" size="40" />
+
+					<p:outputLabel></p:outputLabel>
+					<p:commandButton action="#{studentBean.save}" value="Salvar"
+						process="@form" update=":cad :formList" />
+
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+
+		<h:form id="formList">
+			<p:dataTable var="student" id="list" value="#{studentBean.listAll()}"
+				paginator="true" style="height:500px; width:1000px" rows="10"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} ">
+				<f:facet name="header">Estudantes Cadastrados</f:facet>
+
+				<p:column headerText="Nome" filterBy="name">
+					<h:outputText value="#{student.name}" />
+				</p:column>
+
+				<p:column headerText="Email">
+					<h:outputText value="#{student.email}" />
+				</p:column>
+				
+				<p:column headerText="Matricula">
+					<h:outputText value="#{student.studentNumber}" />
+				</p:column>
+				
+				<p:column headerText="Data Cadastro">
+					<h:outputText value="#{student.cadDate}" />
+				</p:column>
+				
+				<p:column headerText="Ultima modificação">
+					<h:outputText value="#{student.lastModDate}" />
+				</p:column>
+
+				<p:column headerText="Curso">
+					<h:outputText value="#{student.course}" />
+				</p:column>
+
+				<p:column headerText="Periodo">
+					<h:outputText value="#{student.period}" />
+				</p:column>
+
+				<p:column headerText="Status">
+					<h:outputText value="#{student.status}" />
+				</p:column>
+
+				<p:column headerText="Opções">
+					<p:commandButton id="set" icon="ui-icon-trash"
+						action="#{studentBean.delete}" process="@this" update=" :cad"
+						ajax="false" title="Excluir"
+						onclick="if(!confirm('Deseja excluir?')) return false;">
+						<f:setPropertyActionListener target="#{studentBean.student}"
+							value="#{student}" />
+					</p:commandButton>
+					<p:spacer width="10" />
+					<p:commandButton id="update" icon="ui-icon-pencil"
+						update=":formList :cad" process="@this" title="Alterar">
+						<f:setPropertyActionListener target="#{studentBean.student}"
+							value="#{student}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/templates/interna.xhtml">
+	<ui:define name="corpo">
+		<h:form id="questions">
+			<p:messages id="msg" />
+			<ui:repeat value="#{canvasBean.questionsCanvas}" var="qCanvas">
+				<h:inputHidden value="#{qCanvas.idQuestionCanvas}" />
+				<p:panel header="" styleClass="well">
+					<h:panelGrid columns="1">
+						<h:outputLabel value="#{qCanvas.question}" for="q" />
+						<p:inputText id="q" value="#{qCanvas.response}">
+						</p:inputText>
+						<sec:ifAnyGranted roles="ROLE_STUDENT">
+							<p:commandButton action="#{canvasBean.saveQuest}" value="Salvar"
+								process="@form" update=":questions" />
+						</sec:ifAnyGranted>
+					</h:panelGrid>
+				</p:panel>
+			</ui:repeat>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
+</html>

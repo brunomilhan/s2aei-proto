@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/templates/interna.xhtml">
+	<ui:define name="corpo">
+		<h:form id="cad">
+			<p:panel header="Adicionar membros ao projeto" styleClass="well">
+				<p:messages id="msg" />
+				<h:panelGrid columns="2">
+
+					<p:outputLabel value="Estudante:" for="spinnerStudent"
+						style="font-weight:bold" />
+					<p:selectOneMenu value="#{studentGroupBean.idStudent}"
+						panelStyle="width:150px" effect="fade" filter="true"
+						filterMatchMode="startsWith" id="spinnerStudent">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{studentGroupBean.studentSelect}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Projeto:" for="spinnerProject"
+						style="font-weight:bold" />
+					<p:selectOneMenu value="#{studentGroupBean.idProject}"
+						panelStyle="width:150px" effect="fade" filter="true"
+						filterMatchMode="startsWith" id="spinnerProject">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{studentGroupBean.projectSelect}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel></p:outputLabel>
+					<p:commandButton action="#{studentGroupBean.save}" value="Adicionar"
+						process="@form" update=":cad" />
+
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

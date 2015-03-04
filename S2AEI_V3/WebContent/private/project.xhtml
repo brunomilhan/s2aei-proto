@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/templates/interna.xhtml">
+	<ui:define name="corpo">
+		<h:form id="cad">
+
+			<h:inputHidden value="#{projectBean.project.idProject}" />			
+			<h:inputHidden converter="javax.faces.DateTime"
+				value="#{projectBean.project.creationDate}" />
+
+			<p:panel header="Criar novo projeto" styleClass="well">
+				<p:messages id="msg" />
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Título:" for="title" />
+					<p:inputText id="title" value="#{projectBean.project.title}"
+						size="40" required="true"
+						requiredMessage="Título não pode ser nulo." maxlength="45">
+					</p:inputText>
+
+					<h:outputLabel value="Descrição:" for="desc" />
+					<p:inputText id="desc" value="#{projectBean.project.description}"
+						size="40" maxlength="40" required="true"
+						requiredMessage="Descrição não pode ser nulo." />
+
+					<h:outputLabel value="Área de conhecimento:" for="area" />
+					<p:inputText id="area" value="#{projectBean.project.knowledgeArea}"
+						size="40" maxlength="40" required="true"
+						requiredMessage="Área de conhecimento não pode ser nulo." />
+
+
+					<p:outputLabel value="Estudante líder:" for="spinnerStudent"
+						style="font-weight:bold" />
+					<p:selectOneMenu value="#{projectBean.idStudentLeader}"
+						panelStyle="width:150px" effect="fade" filter="true"
+						filterMatchMode="startsWith" id="spinnerStudent">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{projectBean.leaderSelect}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Professor orientador:" for="spinnerTeacherAd"
+						style="font-weight:bold" />
+					<p:selectOneMenu value="#{projectBean.idTeacherAd}"
+						panelStyle="width:150px" effect="fade" filter="true"
+						filterMatchMode="startsWith" id="spinnerTeacherAd">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{projectBean.teacherAdSelect}" />
+					</p:selectOneMenu>
+
+
+					<p:outputLabel></p:outputLabel>
+					<p:commandButton action="#{projectBean.save}" value="Criar"
+						process="@form" update=":cad :formList" />
+
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+
+<!-- java util list not work on session -->
+<!-- 		<p:messages id="msg" /> -->
+<!-- 		<h:panelGrid columns="2"> -->
+<!-- 			<h:form id="memberForm"> -->
+<!-- 				<p:panel header="Adicionar membros do projeto" styleClass="well"> -->
+<!-- 					<p:messages id="msg" /> -->
+<!-- 					<h:panelGrid columns="2"> -->
+<!-- 						<p:outputLabel value="Estudante membro:" for="spinnerMember" -->
+<!-- 							style="font-weight:bold" /> -->
+<!-- 						<p:selectOneMenu value="#{projectBean.idStudentMember}" -->
+<!-- 							panelStyle="width:150px" effect="fade" filter="true" -->
+<!-- 							filterMatchMode="startsWith" id="spinnerMember"> -->
+<!-- 							<f:selectItem itemLabel="Selecione" itemValue="" /> -->
+<!-- 							<f:selectItems value="#{projectBean.leaderSelect}" /> -->
+<!-- 						</p:selectOneMenu> -->
+
+<!-- 						<p:outputLabel></p:outputLabel> -->
+<!-- 						<p:commandButton action="" -->
+<!-- 						value="Adicionar" process="@form" update="@this" /> -->
+<!-- 					</h:panelGrid> -->
+<!-- 				</p:panel> -->
+<!-- 			</h:form> -->
+<!-- 		</h:panelGrid> -->
+
+		<h:form id="formList">
+			<p:dataTable var="project" id="list" value="#{projectBean.listAll()}"
+				paginator="true" style="height:500px; width:1000px" rows="10"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} ">
+				<f:facet name="header">Projetos cadastrados</f:facet>
+
+				<p:column headerText="Título" filterBy="title">
+					<h:outputText value="#{project.title}" />
+				</p:column>
+
+				<p:column headerText="Descrição">
+					<h:outputText value="#{project.description}" />
+				</p:column>
+
+				<p:column headerText="Data criação">
+					<h:outputText value="#{project.creationDate}" />
+				</p:column>
+
+				<p:column headerText="Ultima modificação">
+					<h:outputText value="#{project.lastModDate}" />
+				</p:column>
+
+				<p:column headerText="Status">
+					<h:outputText value="#{project.status}" />
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

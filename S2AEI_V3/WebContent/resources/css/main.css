@@ -1,0 +1,8 @@
+* { margin: 0; padding: 0; }
+body { margin: 0; padding: 0; }
+
+
+/* MAIN BODY PROPERTIES */
+div#top { width: 100%; height: 110px; text-align: center; margin: 0 auto; }
+div#content { width: 94%; height: auto; text-align: center; margin: 0 auto; }
+div#read { width: 90%; height: auto; margin: 0 auto; }

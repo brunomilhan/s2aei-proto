@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/interna.xhtml">
+	<ui:define name="corpo">
+		<h:form id="selectProj">
+			<p:messages id="msg" />
+			<p:panel header="Visualizar as questões dos projetos que você é membro" styleClass="well">
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Projeto" for="spinnerProject" />
+					<p:selectOneMenu value="#{}"
+						panelStyle="width:150px" effect="fade" filter="true"
+						filterMatchMode="startsWith" id="spinnerProject">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{}" />
+					</p:selectOneMenu>
+					
+					<p:outputLabel></p:outputLabel>
+					<p:commandButton action="#{}" value="Criar"
+						process="@form" update=":selectProj :questions" />
+				</h:panelGrid>
+			</p:panel>
+			</ui:repeat>
+		</h:form>
+
+		<h:form id="questions">
+			<p:messages id="msg" />
+			<ui:repeat value="#{canvasBean.questionsCanvas}" var="qCanvas">
+				<p:panel header="Colocar quadro aqui" styleClass="well">
+					<h:panelGrid columns="1">
+						<h:outputLabel value="#{qCanvas.question}" for="q" />
+						<p:inputText id="q" value="#{qCanvas.response}" readonly="true">
+						</p:inputText>
+					</h:panelGrid>
+				</p:panel>
+			</ui:repeat>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title><ui:insert name="titulo">SGFV - Sistema de Gestão de Frotas Veicular</ui:insert></title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<style type="text/css">
+<!--
+#logotipo {
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	font-family: inherit;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+-->
+</style>
+
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="bootstrap-responsive.min.css" />
+</h:head>
+<h:body>
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	<h:outputScript library="js" name="bootstrap.js" />
+	<div id="container">
+		<div id="logotipo">
+			<p>S2AEI</p>
+			Desenvolvimento Integrado de Sistemas
+		</div>
+		<div id="barra_menu">
+			<ui:insert name="barra_menu">
+				<ui:include src="/public/menuBar.xhtml" />
+			</ui:insert>
+		</div>
+		<div id="corpo">
+			<ui:insert name="corpo" />
+		</div>
+		<div id="rodape">
+			<ui:insert name="rodape">
+				<ui:include src="/public/rodape.xhtml" />
+			</ui:insert>
+		</div>
+	</div>
+</h:body>
+</html>
