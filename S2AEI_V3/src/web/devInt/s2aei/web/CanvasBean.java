@@ -3,8 +3,10 @@ package web.devInt.s2aei.web;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import devInt.s2aei.canvas.CanvasBR;
 import devInt.s2aei.canvas.CanvasQuestions;
@@ -48,6 +50,21 @@ public class CanvasBean {
 
 	public void setQuestionsCanvas(List<QuestionCanvas> questionsCanvas) {
 		this.questionsCanvas = questionsCanvas;
+	}
+	
+	public void saveQuest(){
+		try {
+			for (QuestionCanvas questionCanvas : questionsCanvas) {
+				this.canvasBR.saveQuest(questionCanvas);
+			}			
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Pergunta respondida com sucesso!"));
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Não foi possivel atualizar tente novamente."));
+		}
+		
+		
 	}
 
 }

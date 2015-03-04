@@ -11,16 +11,16 @@
 <ui:composition template="/templates/interna.xhtml">
 	<ui:define name="corpo">
 		<h:form id="questions">
+			<p:messages id="msg" />
 			<ui:repeat value="#{canvasBean.questionsCanvas}" var="qCanvas">
 				<h:inputHidden value="#{qCanvas.idQuestionCanvas}" />
-				<p:panel header="Perguntas Canvas" styleClass="well">
-					<p:messages id="msg" />
+				<p:panel header="Colocar quadro aqui" styleClass="well">
 					<h:panelGrid columns="1">
 						<h:outputLabel value="#{qCanvas.question}" for="q" />
 						<p:inputText id="q" value="#{qCanvas.response}">
 						</p:inputText>
 
-						<p:commandButton action="#{canvasBean.save}" value="Salvar"
+						<p:commandButton action="#{canvasBean.saveQuest}" value="Salvar"
 							process="@form" update=":questions" />
 					</h:panelGrid>
 				</p:panel>
