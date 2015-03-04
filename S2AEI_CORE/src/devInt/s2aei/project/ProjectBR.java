@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import devInt.s2aei.canvas.CanvasBR;
+import devInt.s2aei.canvas.QuestionCanvas;
 import devInt.s2aei.student.Student;
 import devInt.s2aei.util.BRException;
 import devInt.s2aei.util.DAOFactory;
@@ -45,6 +46,29 @@ public class ProjectBR {
 		} else
 			this.projectDAO.update(project);
 
+	}
+	
+	public void finalizeProject(Project project) throws BRException{
+		boolean complete = true;
+		
+		CanvasBR canvasBR = new CanvasBR();
+		List <QuestionCanvas> questionsCanvas = canvasBR.listByProject(project);
+		
+		if(!questionsCanvas.isEmpty()) {
+			for (QuestionCanvas questionCanvas : questionsCanvas) {
+				String response = questionCanvas.getResponse();
+				if ( response == "" || response == null || response.length() < 3) {
+					complete = false;					
+					break;
+				}
+			}
+		}
+		
+		if(complete){
+			project.setStatus("em avaliação");		
+			this.save(project);
+		} else
+			throw new BRException("Faltam resposta para serem preenchidas.");
 	}
 
 	public void generateCanvas(Project project) throws BRException {
