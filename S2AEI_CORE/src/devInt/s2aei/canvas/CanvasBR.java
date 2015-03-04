@@ -20,16 +20,28 @@ public class CanvasBR {
 			CanvasQuestions canvasQuestions = new CanvasQuestions(canvasDAO);
 			canvasQuestions.generateQuestions2Project(project);
 		} catch (Exception e) {
-			Logger.log(Logger.CANVAS_BR, Logger.DBG, "Erro ao gerar as perguntas Canvas. " + e);
-			
+			Logger.log(Logger.CANVAS_BR, Logger.DBG,
+					"Erro ao gerar as perguntas Canvas. " + e);
+
 		}
 	}
 
-	public List<QuestionCanvas> listAll() {		
+	public List<QuestionCanvas> listAll() {
 		return this.canvasDAO.listAllQuests();
 	}
-	
-	public List<QuestionCanvas> listByProject(Project project){
+
+	public List<QuestionCanvas> listByProject(Project project) {
 		return this.canvasDAO.listByProject(project);
+	}
+
+	public void saveQuest(QuestionCanvas questionCanvas) {
+		Integer id = questionCanvas.getIdQuestionCanvas();
+
+		if (id == 0 || id == null) {
+			this.canvasDAO.saveQuest(questionCanvas);
+			Logger.log(Logger.CANVAS_BR, Logger.DBG, "Pergunta Canvas Salva. ");
+		} else
+			this.canvasDAO.updateQuest(questionCanvas);
+		Logger.log(Logger.CANVAS_BR, Logger.DBG, "Pergunta Canvas Atualizada. " + id);
 	}
 }
