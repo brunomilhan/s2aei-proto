@@ -1,5 +1,6 @@
 package devInt.s2aei.reviewer;
 
+import java.util.Date;
 import java.util.List;
 
 import devInt.s2aei.user.UserBR;
@@ -14,11 +15,14 @@ public class ReviewerBR {
 	}
 
 	public void save(Reviewer reviewer){
-		Integer idAdmin = reviewer.getIdInspector();
+		Integer idAdmin = reviewer.getIdReviewer();
+		reviewer.setStatus("ativo");
+		reviewer.setLastModDate(new Date(System.currentTimeMillis()));
 		
 		if(idAdmin == null || idAdmin == 0){
 			this.reviewerDAO.save(reviewer);
 			
+			reviewer.setCadDate(new Date(System.currentTimeMillis()));
 			UserBR userBR = new UserBR(reviewer.getEmail(), reviewer.getPassword(), "ROLE_REVIEWER");
 			userBR.save();
 		}else{

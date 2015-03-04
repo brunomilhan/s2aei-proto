@@ -3,6 +3,7 @@ package devInt.s2aei.canvas;
 import java.util.List;
 
 import devInt.s2aei.project.Project;
+import devInt.s2aei.project.ProjectBR;
 import devInt.s2aei.util.BRException;
 import devInt.s2aei.util.DAOFactory;
 import devInt.s2aei.util.Logger;
@@ -10,6 +11,8 @@ import devInt.s2aei.util.Logger;
 public class CanvasBR {
 
 	private CanvasDAO canvasDAO;
+	
+	private ProjectBR projectBR = new ProjectBR();
 
 	public CanvasBR() {
 		this.canvasDAO = DAOFactory.createCanvasDAO();
@@ -22,7 +25,6 @@ public class CanvasBR {
 		} catch (Exception e) {
 			Logger.log(Logger.CANVAS_BR, Logger.DBG,
 					"Erro ao gerar as perguntas Canvas. " + e);
-
 		}
 	}
 
@@ -40,8 +42,11 @@ public class CanvasBR {
 		if (id == 0 || id == null) {
 			this.canvasDAO.saveQuest(questionCanvas);
 			Logger.log(Logger.CANVAS_BR, Logger.DBG, "Pergunta Canvas Salva. ");
-		} else
+		} else {
 			this.canvasDAO.updateQuest(questionCanvas);
-		Logger.log(Logger.CANVAS_BR, Logger.DBG, "Pergunta Canvas Atualizada. " + id);
+			this.projectBR.updateModDate(questionCanvas.getProject());
+			Logger.log(Logger.CANVAS_BR, Logger.DBG,
+					"Pergunta Canvas Atualizada. " + id);
+		}
 	}
 }

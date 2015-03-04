@@ -21,7 +21,7 @@ public class TeacherBR {
 		teacher.setLastModDate(dateNow);
 		
 		if(idTeacher == null || idTeacher == 0){
-			teacher.setStatus("active");
+			teacher.setStatus("ativo");
 			teacher.setCadDate(dateNow);
 			teacher.setPermissions("teacher");
 			
@@ -30,6 +30,7 @@ public class TeacherBR {
 			
 			this.teacherDAO.save(teacher);
 		}else{
+			teacher.setPermissions("teacher");
 			this.teacherDAO.update(teacher);
 		}
 	}

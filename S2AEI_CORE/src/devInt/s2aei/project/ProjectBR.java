@@ -86,5 +86,9 @@ public class ProjectBR {
 		}
 		return null;
 	}
-
+	
+	public void updateModDate(Project project){
+		project.setLastModDate(new Date(System.currentTimeMillis()));
+		this.projectDAO.update(project);
+	}
 }

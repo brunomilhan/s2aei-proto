@@ -29,112 +29,64 @@ public class Reviewer implements Serializable {
 	@Column(name="last_mod")
 	private Date lastModDate;
 	private String status;
-	private String function;
-	private String field;
+	
+	@Column(name="know_area")
+	private String knowArea;
 	private String degree;
-	
-	@Column(name="project_evaluates")
-	private String projectEvalutes;
-	
-	@Column(name="project_evaluated")
-	private String projectEvaluated;
-
-	public int getIdInspector() {
+	public int getIdReviewer() {
 		return idReviewer;
 	}
-
-	public void setIdInspector(int idInspector) {
-		this.idReviewer = idInspector;
+	public void setIdReviewer(int idReviewer) {
+		this.idReviewer = idReviewer;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public Date getCadDate() {
 		return cadDate;
 	}
-
 	public void setCadDate(Date cadDate) {
 		this.cadDate = cadDate;
 	}
-
 	public Date getLastModDate() {
 		return lastModDate;
 	}
-
 	public void setLastModDate(Date lastModDate) {
 		this.lastModDate = lastModDate;
 	}
-
 	public String getStatus() {
 		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-	public String getFunction() {
-		return function;
+	public String getKnowArea() {
+		return knowArea;
 	}
-
-	public void setFunction(String function) {
-		this.function = function;
+	public void setKnowArea(String knowArea) {
+		this.knowArea = knowArea;
 	}
-
-	public String getField() {
-		return field;
-	}
-
-	public void setField(String field) {
-		this.field = field;
-	}
-
 	public String getDegree() {
 		return degree;
 	}
-
 	public void setDegree(String degree) {
 		this.degree = degree;
 	}
-
-	public String getProjectEvalutes() {
-		return projectEvalutes;
-	}
-
-	public void setProjectEvalutes(String projectEvalutes) {
-		this.projectEvalutes = projectEvalutes;
-	}
-
-	public String getProjectEvaluated() {
-		return projectEvaluated;
-	}
-
-	public void setProjectEvaluated(String projectEvaluated) {
-		this.projectEvaluated = projectEvaluated;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -142,24 +94,17 @@ public class Reviewer implements Serializable {
 		result = prime * result + ((cadDate == null) ? 0 : cadDate.hashCode());
 		result = prime * result + ((degree == null) ? 0 : degree.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((field == null) ? 0 : field.hashCode());
-		result = prime * result
-				+ ((function == null) ? 0 : function.hashCode());
 		result = prime * result + idReviewer;
+		result = prime * result
+				+ ((knowArea == null) ? 0 : knowArea.hashCode());
 		result = prime * result
 				+ ((lastModDate == null) ? 0 : lastModDate.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result
 				+ ((password == null) ? 0 : password.hashCode());
-		result = prime
-				* result
-				+ ((projectEvaluated == null) ? 0 : projectEvaluated.hashCode());
-		result = prime * result
-				+ ((projectEvalutes == null) ? 0 : projectEvalutes.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -184,17 +129,12 @@ public class Reviewer implements Serializable {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (field == null) {
-			if (other.field != null)
-				return false;
-		} else if (!field.equals(other.field))
-			return false;
-		if (function == null) {
-			if (other.function != null)
-				return false;
-		} else if (!function.equals(other.function))
-			return false;
 		if (idReviewer != other.idReviewer)
+			return false;
+		if (knowArea == null) {
+			if (other.knowArea != null)
+				return false;
+		} else if (!knowArea.equals(other.knowArea))
 			return false;
 		if (lastModDate == null) {
 			if (other.lastModDate != null)
@@ -211,25 +151,12 @@ public class Reviewer implements Serializable {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (projectEvaluated == null) {
-			if (other.projectEvaluated != null)
-				return false;
-		} else if (!projectEvaluated.equals(other.projectEvaluated))
-			return false;
-		if (projectEvalutes == null) {
-			if (other.projectEvalutes != null)
-				return false;
-		} else if (!projectEvalutes.equals(other.projectEvalutes))
-			return false;
 		if (status == null) {
 			if (other.status != null)
 				return false;
 		} else if (!status.equals(other.status))
 			return false;
 		return true;
-	}
+	}	
 	
-	
-
-		
 }

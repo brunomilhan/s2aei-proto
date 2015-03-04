@@ -10,6 +10,8 @@ public class Logger {
 	public static final String SESSION_UTIL = "SessionUtil";
 	public static final String CANVAS_QUESTION = "CanvasQuestion";
 	
+	public static final String DESKTOP_DB_CTRL = "DBController";
+	
 	// BRs
 	public static final String PROJECT_BR = "Project BR";
 	public static final String STUDENT_PROJECT_BR = "StudentProject BR";

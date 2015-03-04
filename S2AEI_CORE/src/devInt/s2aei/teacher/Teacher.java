@@ -33,10 +33,7 @@ public class Teacher implements Serializable{
 	
 	@Column(name="main_disc")
 	private String mainDiscipline;
-	
-	@Column(name="project_guides")
-	private String projectGuides;
-
+		
 	private String department;
 
 	public int getIdTeacher() {
@@ -111,14 +108,6 @@ public class Teacher implements Serializable{
 		this.mainDiscipline = mainDiscipline;
 	}
 
-	public String getProjectGuides() {
-		return projectGuides;
-	}
-
-	public void setProjectGuides(String projectGuides) {
-		this.projectGuides = projectGuides;
-	}
-
 	public String getDepartment() {
 		return department;
 	}
@@ -145,8 +134,6 @@ public class Teacher implements Serializable{
 				+ ((password == null) ? 0 : password.hashCode());
 		result = prime * result
 				+ ((permissions == null) ? 0 : permissions.hashCode());
-		result = prime * result
-				+ ((projectGuides == null) ? 0 : projectGuides.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
@@ -202,11 +189,6 @@ public class Teacher implements Serializable{
 				return false;
 		} else if (!permissions.equals(other.permissions))
 			return false;
-		if (projectGuides == null) {
-			if (other.projectGuides != null)
-				return false;
-		} else if (!projectGuides.equals(other.projectGuides))
-			return false;
 		if (status == null) {
 			if (other.status != null)
 				return false;
@@ -214,6 +196,5 @@ public class Teacher implements Serializable{
 			return false;
 		return true;
 	}
-		
-		
+
 }
